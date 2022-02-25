@@ -165,19 +165,19 @@ export const QUESTIONS: Question[] = [{
 
 export const PERFORMERS = [{
     name: 'Clown',
-    points: 19,
+    points: 14,
     image: clown,
 },{
     name: 'Juggler',
-    points: 22,
+    points: 17,
     image: juggling,
 },{
     name: 'Magician',
-    points: 24,
+    points: 20,
     image: magic,
 },{
     name: 'Unicyclist',
-    points: 25,
+    points: 23,
     image: unicycle,
 },{
     name: 'Ringmaster',
@@ -185,15 +185,15 @@ export const PERFORMERS = [{
     image: ring,
 },{
     name: 'Trapeze Artist',
-    points: 27,
+    points: 29,
     image: trapeze,
 },{
     name: 'Tightrope Walker',
-    points: 29,
+    points: 33,
     image: tightrope,
 },{
     name: 'Lion Tamer',
-    points: 31,
+    points: 36,
     image: lion,
 },{
     name: 'Snake Charmer',
