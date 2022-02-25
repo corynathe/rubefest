@@ -1,10 +1,13 @@
 import { Question } from "./model";
 import clown from '../assets/images/clown.png';
 import lion from '../assets/images/lion.png';
+import snake from '../assets/images/snake.png';
 import magic from '../assets/images/magic-wand.png';
 import ring from '../assets/images/ring.png';
 import trapeze from '../assets/images/trapeze.png';
 import unicycle from '../assets/images/unicycle.png';
+import juggling from '../assets/images/juggling.png';
+import tightrope from '../assets/images/tightrope-walker.png';
 
 export const ACTION_TIMER = 1500;
 
@@ -163,11 +166,15 @@ export const QUESTIONS: Question[] = [{
 // TODO adjust points by standard curve distribution
 export const PERFORMERS = [{
     name: 'Clown',
-    points: 17,
+    points: 20,
     image: clown,
 },{
-    name: 'Magician',
+    name: 'Juggler',
     points: 22,
+    image: juggling,
+},{
+    name: 'Magician',
+    points: 24,
     image: magic,
 },{
     name: 'Unicyclist',
@@ -175,14 +182,22 @@ export const PERFORMERS = [{
     image: unicycle,
 },{
     name: 'Ringmaster',
-    points: 28,
+    points: 26,
     image: ring,
 },{
     name: 'Trapeze Artist',
-    points: 33,
+    points: 27,
     image: trapeze,
 },{
+    name: 'Tightrope Walker',
+    points: 29,
+    image: tightrope,
+},{
     name: 'Lion Tamer',
-    points: 40,
+    points: 31,
     image: lion,
+},{
+    name: 'Snake Charmer',
+    points: 40,
+    image: snake,
 }];
