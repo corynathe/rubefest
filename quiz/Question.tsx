@@ -25,10 +25,7 @@ export const QuestionDisplay: FC<Props> = memo(props => {
     }, [selectedAnswer]);
 
     return (
-        <Page>
-            <Text style={STYLES.status}>
-                {status}
-            </Text>
+        <Page status={status}>
             <View>
                 <Text style={STYLES.question}>
                     {question.text}

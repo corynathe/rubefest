@@ -37,13 +37,18 @@ export const STYLES = StyleSheet.create({
         justifyContent: 'space-around',
         width: WIDTH,
     },
-    status: {
-        paddingBottom: 10,
-        fontSize: 15,
+    footerTitle: {
+        paddingTop: 10,
+        fontSize: 20,
         fontFamily: 'Rye_400Regular',
-        color: THEME1.orange,
-        width: WIDTH,
-        textAlign: 'right',
+        color: THEME1.blue,
+    },
+    headerTitle: {
+        paddingTop: 10,
+        fontSize: 25,
+        fontFamily: 'Rye_400Regular',
+        textTransform: 'uppercase',
+        color: THEME1.blue,
     },
     title: {
         width: WIDTH,
@@ -66,7 +71,7 @@ export const STYLES = StyleSheet.create({
         fontSize: 25,
         fontFamily: 'Rye_400Regular',
         textTransform: 'uppercase',
-        color: THEME1.blue,
+        color: THEME1.orange,
         paddingBottom: 20,
         width: WIDTH,
     },
