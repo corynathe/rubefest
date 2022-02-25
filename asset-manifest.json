@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/rubefest/static/js/app.3686815f.chunk.js",
-    "app.js.map": "/rubefest/static/js/app.3686815f.chunk.js.map",
+    "app.js": "/rubefest/static/js/app.74c0eb5c.chunk.js",
+    "app.js.map": "/rubefest/static/js/app.74c0eb5c.chunk.js.map",
     "runtime~app.js": "/rubefest/static/js/runtime~app.61063793.js",
     "runtime~app.js.map": "/rubefest/static/js/runtime~app.61063793.js.map",
     "static/js/2.bd1d7c94.chunk.js": "/rubefest/static/js/2.bd1d7c94.chunk.js",
@@ -44,6 +44,6 @@
   "entrypoints": [
     "static/js/runtime~app.61063793.js",
     "static/js/2.bd1d7c94.chunk.js",
-    "static/js/app.3686815f.chunk.js"
+    "static/js/app.74c0eb5c.chunk.js"
   ]
 }
