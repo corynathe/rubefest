@@ -40,8 +40,7 @@ export const Finished: FC<Props> = memo(props => {
                 </Text>
             </TouchableOpacity>
 
-            {/*TODO why isn't this working on phone*/}
-            {/*<View style={STYLES.footer2}>*/}
+            {/*<View>*/}
             {/*    <a href="https://www.flaticon.com/free-icons/circus" title="circus icons">*/}
             {/*        <Text>*/}
             {/*            Circus icons created by Freepik - Flaticon*/}

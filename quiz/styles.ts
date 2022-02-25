@@ -23,6 +23,12 @@ export const STYLES = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'space-around',
+        backgroundColor: THEME1.light,
+    },
+    main: {
+        flex: 1,
+        alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: THEME1.light,
     },
@@ -32,25 +38,12 @@ export const STYLES = StyleSheet.create({
         width: WIDTH,
     },
     status: {
-        position: 'absolute',
-        top: 75,
+        paddingBottom: 10,
         fontSize: 15,
         fontFamily: 'Rye_400Regular',
         color: THEME1.orange,
         width: WIDTH,
         textAlign: 'right',
-    },
-    header: {
-        position: 'absolute',
-        top: 15,
-    },
-    footer: {
-        position: 'absolute',
-        bottom: 15,
-    },
-    footer2: {
-        position: 'absolute',
-        bottom: 70,
     },
     title: {
         width: WIDTH,
