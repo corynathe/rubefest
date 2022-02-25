@@ -163,10 +163,9 @@ export const QUESTIONS: Question[] = [{
     }]
 }];
 
-// TODO adjust points by standard curve distribution
 export const PERFORMERS = [{
     name: 'Clown',
-    points: 20,
+    points: 19,
     image: clown,
 },{
     name: 'Juggler',
