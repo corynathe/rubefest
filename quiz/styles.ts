@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 
 const THEME1 = {
     yellow: '#f2bd4d',
@@ -23,6 +23,7 @@ export const STYLES = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: THEME1.light,
     },
     row: {
@@ -31,21 +32,21 @@ export const STYLES = StyleSheet.create({
         width: WIDTH,
     },
     status: {
+        position: 'absolute',
+        top: 75,
         fontSize: 15,
         fontFamily: 'Rye_400Regular',
         color: THEME1.orange,
-        paddingTop: 100,
-        paddingBottom: 30,
         width: WIDTH,
-        textAlign: 'left',
+        textAlign: 'right',
     },
     header: {
         position: 'absolute',
-        top: 10,
+        top: 15,
     },
     footer: {
         position: 'absolute',
-        bottom: 10,
+        bottom: 15,
     },
     footer2: {
         position: 'absolute',
@@ -53,8 +54,7 @@ export const STYLES = StyleSheet.create({
     },
     title: {
         width: WIDTH,
-        paddingTop: 100,
-        paddingBottom: 50,
+        paddingBottom: 40,
         textAlign: 'center',
         fontSize: 50,
         fontFamily: 'Rye_400Regular',
@@ -94,7 +94,7 @@ export const STYLES = StyleSheet.create({
         color: THEME1.green,
     },
     button: {
-        marginTop: 50,
+        marginTop: 40,
         padding: 20,
         backgroundColor: THEME1.yellow,
         borderRadius: 10,

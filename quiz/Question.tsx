@@ -1,5 +1,5 @@
 import React, { FC, memo, useState, useCallback } from 'react';
-import { Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { Question, Answer } from "./model";
 import { ACTION_TIMER } from "./constants";
 import { STYLES } from "./styles";
@@ -29,24 +29,26 @@ export const QuestionDisplay: FC<Props> = memo(props => {
             <Text style={STYLES.status}>
                 {status}
             </Text>
-            <Text style={STYLES.question}>
-                {question.text}
-            </Text>
-            {question.answers.map((answer) => {
-                return (
-                    <TouchableOpacity
-                        key={answer.points}
-                        onPress={() => onAnswerClick(answer)}
-                        style={[
-                            STYLES.answerBox, answer === selectedAnswer ? STYLES.answerSelected : undefined
-                        ]}
-                    >
-                        <Text style={STYLES.answerText}>
-                            {answer.text}
-                        </Text>
-                    </TouchableOpacity>
-                )
-            })}
+            <View>
+                <Text style={STYLES.question}>
+                    {question.text}
+                </Text>
+                {question.answers.map((answer) => {
+                    return (
+                        <TouchableOpacity
+                            key={answer.points}
+                            onPress={() => onAnswerClick(answer)}
+                            style={[
+                                STYLES.answerBox, answer === selectedAnswer ? STYLES.answerSelected : undefined
+                            ]}
+                        >
+                            <Text style={STYLES.answerText}>
+                                {answer.text}
+                            </Text>
+                        </TouchableOpacity>
+                    )
+                })}
+            </View>
         </Page>
     )
 });
