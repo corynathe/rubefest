@@ -1,9 +1,10 @@
-import React, { FC, memo, useCallback } from 'react';
+import React, { FC, memo, useCallback, useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { STYLES, WIDTH } from "./styles";
-import { PERFORMERS } from "./constants";
+import { PERFORMERS, FINAL_PERF_SIZE } from "./constants";
 import { Answer } from "./model";
 import { Page } from "./Page";
+import { Anchor } from "./Anchor";
 
 interface Props {
     answers: Answer[];
@@ -12,6 +13,7 @@ interface Props {
 
 export const Finished: FC<Props> = memo(props => {
     const { reset, answers } = props;
+    const [showQuizInfo, setShowQuizInfo] = useState<boolean>();
 
     const points = answers.reduce((val, next) => {
         return val + next.points;
@@ -25,28 +27,100 @@ export const Finished: FC<Props> = memo(props => {
         }, 500);
     }, []);
 
+    const onShare = useCallback(() => {
+        console.log('coming soon...')
+    }, []);
+
+    const onQuizInfo = useCallback(() => {
+        setShowQuizInfo(true);
+    }, []);
+
+    const closeQuizInfo = useCallback(() => {
+        setShowQuizInfo(false);
+    }, []);
+
     return (
         <Page>
-            <Text style={STYLES.title}>
-                You are a ...
-            </Text>
-            <Image source={performer.image} style={{ width: 200, height: 200 }} />
-            <Text style={STYLES.subtitle}>
-                {performer.name}
-            </Text>
-            <TouchableOpacity style={STYLES.button} onPress={onClick}>
-                <Text style={STYLES.buttonText}>
-                    Restart
-                </Text>
-            </TouchableOpacity>
-
-            {/*<View>*/}
-            {/*    <a href="https://www.flaticon.com/free-icons/circus" title="circus icons">*/}
-            {/*        <Text>*/}
-            {/*            Circus icons created by Freepik - Flaticon*/}
-            {/*        </Text>*/}
-            {/*    </a>*/}
-            {/*</View>*/}
+            {showQuizInfo ? (
+                <>
+                    <Text style={[STYLES.title, { fontSize: 30 }]}>Meet the performers!</Text>
+                    <View style={[STYLES.rowCenter]}>
+                        <ShowPerformer name={PERFORMERS[0].name} image={PERFORMERS[0].image} />
+                        <ShowPerformer name={PERFORMERS[1].name} image={PERFORMERS[1].image} />
+                        <ShowPerformer name={PERFORMERS[2].name} image={PERFORMERS[2].image} />
+                    </View>
+                    <View style={[STYLES.rowCenter]}>
+                        <ShowPerformer name={PERFORMERS[3].name} image={PERFORMERS[3].image} />
+                        <ShowPerformer name={PERFORMERS[4].name} image={PERFORMERS[4].image} />
+                        <ShowPerformer name={PERFORMERS[5].name} image={PERFORMERS[5].image} />
+                    </View>
+                    <View style={[STYLES.rowCenter]}>
+                        <ShowPerformer name={PERFORMERS[6].name} image={PERFORMERS[6].image} />
+                        <ShowPerformer name={PERFORMERS[7].name} image={PERFORMERS[7].image} />
+                        <ShowPerformer name={PERFORMERS[8].name} image={PERFORMERS[8].image} />
+                    </View>
+                    <TouchableOpacity style={STYLES.button} onPress={closeQuizInfo}>
+                        <Text style={STYLES.buttonText}>
+                            Close Quiz Info
+                        </Text>
+                    </TouchableOpacity>
+                    <View style={{ paddingTop: 10 }}>
+                        <Text style={{ fontSize: 10 }}>
+                            Circus icons created by{' '}
+                            <Anchor href="https://www.flaticon.com/free-icons/circus">
+                                Freepik - Flaticon
+                            </Anchor>
+                        </Text>
+                        <Text style={{ fontSize: 10 }}>
+                            Fonts and color palette by{' '}
+                            <Anchor href="https://slidesgo.com/theme/circus-background">
+                                slidesgo
+                            </Anchor>
+                        </Text>
+                    </View>
+                </>
+            ) : (
+                <>
+                    <Text style={STYLES.title}>
+                        You are a ...
+                    </Text>
+                    <Image source={performer.image} style={{ width: FINAL_PERF_SIZE, height: FINAL_PERF_SIZE }} />
+                    <Text style={STYLES.subtitle}>
+                        {performer.name}
+                    </Text>
+                    <View style={[STYLES.row]}>
+                        <TouchableOpacity style={STYLES.button} onPress={onClick}>
+                            <Text style={STYLES.buttonText}>
+                                Restart
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[STYLES.button, STYLES.buttonBlue]} onPress={onShare}>
+                            <Text style={[STYLES.buttonText, STYLES.buttonTextBlue]}>
+                                Share
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={STYLES.button} onPress={onQuizInfo}>
+                            <Text style={STYLES.buttonText}>
+                                Quiz Info
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </>
+            )}
         </Page>
     )
+});
+
+interface PerfProps {
+    name: string;
+    image: any
+}
+
+const ShowPerformer: FC<PerfProps> = memo(props => {
+    return (
+        <View style={{ justifyContent: 'space-around', alignItems: 'center', width: 120, padding: 10 }}>
+            <Image source={props.image} style={{ width: 50, height: 50 }} />
+            <Text style={[STYLES.infoText]}>{props.name}</Text>
+        </View>
+    );
 });

@@ -11,6 +11,8 @@ import tightrope from '../assets/images/tightrope-walker.png';
 
 export const ACTION_TIMER = 1500;
 
+export const TOTAL_QUESTIONS = 10;
+
 export const QUESTIONS: Question[] = [{
     text: 'If you found yourself up on the tightrope, what would you say?',
     answers: [{
@@ -161,7 +163,24 @@ export const QUESTIONS: Question[] = [{
         text: 'Take a nap',
         points: 4,
     }]
+},{
+    text: 'What drink would you choose at the circus?',
+    answers: [{
+        text: 'Bottled Water',
+        points: 1,
+    },{
+        text: 'Blue Slushy',
+        points: 2,
+    },{
+        text: 'Red Slushy',
+        points: 3,
+    },{
+        text: 'Cold Beer',
+        points: 4,
+    }]
 }];
+
+export const FINAL_PERF_SIZE = 200;
 
 export const PERFORMERS = [{
     name: 'Clown',

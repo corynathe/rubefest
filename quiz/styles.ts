@@ -37,6 +37,11 @@ export const STYLES = StyleSheet.create({
         justifyContent: 'space-around',
         width: WIDTH,
     },
+    rowCenter: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: WIDTH,
+    },
     footerTitle: {
         paddingTop: 10,
         fontSize: 20,
@@ -84,23 +89,37 @@ export const STYLES = StyleSheet.create({
     },
     answerSelected: {
         backgroundColor: THEME1.orange,
-        color: THEME1.green,
     },
     answerText: {
         fontSize: 20,
         fontFamily: 'Livvic_400Regular',
         color: THEME1.green,
     },
+    answerSelectedText: {
+        color: THEME1.light,
+    },
     button: {
         marginTop: 40,
-        padding: 20,
+        padding: 15,
         backgroundColor: THEME1.yellow,
         borderRadius: 10,
     },
     buttonText: {
-        fontSize: 20,
+        fontSize: 15,
         textTransform: 'uppercase',
         fontFamily: 'Rye_400Regular',
         color: THEME1.green,
+    },
+    buttonBlue: {
+        backgroundColor: THEME1.blue,
+    },
+    buttonTextBlue: {
+        color: THEME1.light,
+    },
+    infoText: {
+        fontSize: 15,
+        fontFamily: 'Rye_400Regular',
+        color: THEME1.green,
+        textAlign: 'center',
     },
 });
