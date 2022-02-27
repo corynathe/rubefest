@@ -1,5 +1,5 @@
 import React, { FC, memo, useCallback, useState } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Share } from 'react-native'
 import { STYLES, WIDTH } from "./styles";
 import { PERFORMERS, FINAL_PERF_SIZE } from "./constants";
 import { Answer } from "./model";
@@ -14,6 +14,7 @@ interface Props {
 export const Finished: FC<Props> = memo(props => {
     const { reset, answers } = props;
     const [showQuizInfo, setShowQuizInfo] = useState<boolean>();
+    const [shareError, setShareError] = useState<string>();
 
     const points = answers.reduce((val, next) => {
         return val + next.points;
@@ -27,9 +28,16 @@ export const Finished: FC<Props> = memo(props => {
         }, 500);
     }, []);
 
-    const onShare = useCallback(() => {
-        console.log('coming soon...')
-    }, []);
+    const onShare = useCallback(async () => {
+        try {
+            const result = await Share.share({
+                message: 'RubeFest Circus - I am a ' + performer.name + '!',
+                url: 'https://corynathe.github.io/rubefest/',
+            });
+        } catch (error) {
+            setShareError('Sorry! Sharing not supported on this device.');
+        }
+    }, [performer]);
 
     const onQuizInfo = useCallback(() => {
         setShowQuizInfo(true);
@@ -105,6 +113,9 @@ export const Finished: FC<Props> = memo(props => {
                             </Text>
                         </TouchableOpacity>
                     </View>
+                    {shareError && (
+                        <Text style={[STYLES.error]}>{shareError}</Text>
+                    )}
                 </>
             )}
         </Page>

@@ -122,4 +122,10 @@ export const STYLES = StyleSheet.create({
         color: THEME1.green,
         textAlign: 'center',
     },
+    error: {
+        fontSize: 20,
+        fontFamily: 'Livvic_400Regular',
+        color: THEME1.orange,
+        textAlign: 'center',
+    },
 });
