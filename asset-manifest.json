@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/rubefest/static/js/app.f948e994.chunk.js",
-    "app.js.map": "/rubefest/static/js/app.f948e994.chunk.js.map",
+    "app.js": "/rubefest/static/js/app.cdebeb90.chunk.js",
+    "app.js.map": "/rubefest/static/js/app.cdebeb90.chunk.js.map",
     "runtime~app.js": "/rubefest/static/js/runtime~app.61063793.js",
     "runtime~app.js.map": "/rubefest/static/js/runtime~app.61063793.js.map",
-    "static/js/2.06e07ca1.chunk.js": "/rubefest/static/js/2.06e07ca1.chunk.js",
-    "static/js/2.06e07ca1.chunk.js.map": "/rubefest/static/js/2.06e07ca1.chunk.js.map",
+    "static/js/2.52ee2a43.chunk.js": "/rubefest/static/js/2.52ee2a43.chunk.js",
+    "static/js/2.52ee2a43.chunk.js.map": "/rubefest/static/js/2.52ee2a43.chunk.js.map",
     "fonts/Livvic_100Thin.ttf": "/rubefest/./fonts/Livvic_100Thin.ttf",
     "fonts/Livvic_100Thin_Italic.ttf": "/rubefest/./fonts/Livvic_100Thin_Italic.ttf",
     "fonts/Livvic_200ExtraLight.ttf": "/rubefest/./fonts/Livvic_200ExtraLight.ttf",
@@ -29,7 +29,7 @@
     "index.html": "/rubefest/index.html",
     "manifest.json": "/rubefest/manifest.json",
     "serve.json": "/rubefest/serve.json",
-    "static/js/2.06e07ca1.chunk.js.LICENSE.txt": "/rubefest/static/js/2.06e07ca1.chunk.js.LICENSE.txt",
+    "static/js/2.52ee2a43.chunk.js.LICENSE.txt": "/rubefest/static/js/2.52ee2a43.chunk.js.LICENSE.txt",
     "static/media/circus.png": "/rubefest/static/media/circus.999d22df.png",
     "static/media/clown.png": "/rubefest/static/media/clown.8188e9df.png",
     "static/media/juggling.png": "/rubefest/static/media/juggling.4bd31626.png",
@@ -43,7 +43,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.61063793.js",
-    "static/js/2.06e07ca1.chunk.js",
-    "static/js/app.f948e994.chunk.js"
+    "static/js/2.52ee2a43.chunk.js",
+    "static/js/app.cdebeb90.chunk.js"
   ]
 }
