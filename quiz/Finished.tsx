@@ -44,7 +44,9 @@ export const Finished: FC<Props> = memo(props => {
                 // dismissed
             }
         } catch (error) {
-            setShareError(error?.message || 'Sorry! Sharing not supported on this device.');
+            if (error?.message.toLowerCase().indexOf('cancel') === -1) {
+                setShareError(error?.message || 'Sorry! Sharing not supported on this device.');
+            }
         }
     }, [performer]);
 
