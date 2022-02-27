@@ -34,8 +34,17 @@ export const Finished: FC<Props> = memo(props => {
                 message: 'RubeFest Circus - I am a ' + performer.name + '!',
                 url: 'https://corynathe.github.io/rubefest/',
             });
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                    // shared with activity type of result.activityType
+                } else {
+                    // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                // dismissed
+            }
         } catch (error) {
-            setShareError('Sorry! Sharing not supported on this device.');
+            setShareError(error?.message || 'Sorry! Sharing not supported on this device.');
         }
     }, [performer]);
 
