@@ -130,4 +130,26 @@ export const STYLES = StyleSheet.create({
         color: THEME1.orange,
         textAlign: 'center',
     },
+    card: {
+        border: 'solid 1px ' + THEME1.green,
+        borderRadius: 15,
+        padding: 10,
+        marginTop: 20,
+        marginBottom: 20,
+    },
+    card_orange: {
+        backgroundColor: THEME1.orange,
+    },
+    card_blue: {
+        backgroundColor: THEME1.blue,
+    },
+    card_yellow: {
+        backgroundColor: THEME1.yellow,
+    },
+    cardText: {
+        fontSize: 30,
+        fontFamily: 'Rye_400Regular',
+        color: THEME1.light,
+        paddingLeft: 20,
+    }
 });

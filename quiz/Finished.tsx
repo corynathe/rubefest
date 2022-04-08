@@ -1,18 +1,19 @@
 import React, { FC, memo, useCallback, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, Share } from 'react-native'
-import { STYLES, WIDTH } from "./styles";
+import { STYLES } from "../styles";
 import { PERFORMERS, FINAL_PERF_SIZE } from "./constants";
 import { Answer } from "./model";
-import { Page } from "./Page";
-import { Anchor } from "./Anchor";
+import { Page } from "../components/Page";
+import { Anchor } from "../components/Anchor";
 
 interface Props {
     answers: Answer[];
     reset: () => void;
+    navigation: any;
 }
 
 export const Finished: FC<Props> = memo(props => {
-    const { reset, answers } = props;
+    const { reset, answers, navigation } = props;
     const [showQuizInfo, setShowQuizInfo] = useState<boolean>();
     const [shareError, setShareError] = useState<string>();
 
@@ -24,6 +25,7 @@ export const Finished: FC<Props> = memo(props => {
 
     const onClick = useCallback(() => {
         setTimeout(() => {
+            navigation.navigate('Home');
             reset();
         }, 500);
     }, []);
@@ -110,7 +112,7 @@ export const Finished: FC<Props> = memo(props => {
                     <View style={[STYLES.row]}>
                         <TouchableOpacity style={STYLES.button} onPress={onClick}>
                             <Text style={STYLES.buttonText}>
-                                Restart
+                                Home
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[STYLES.button, STYLES.buttonBlue]} onPress={onShare}>
