@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/rubefest/static/js/app.2cad75af.chunk.js",
-    "app.js.map": "/rubefest/static/js/app.2cad75af.chunk.js.map",
+    "app.js": "/rubefest/static/js/app.7193161d.chunk.js",
+    "app.js.map": "/rubefest/static/js/app.7193161d.chunk.js.map",
     "runtime~app.js": "/rubefest/static/js/runtime~app.61063793.js",
     "runtime~app.js.map": "/rubefest/static/js/runtime~app.61063793.js.map",
-    "static/js/2.a6357298.chunk.js": "/rubefest/static/js/2.a6357298.chunk.js",
-    "static/js/2.a6357298.chunk.js.map": "/rubefest/static/js/2.a6357298.chunk.js.map",
+    "static/js/2.36cbb3e9.chunk.js": "/rubefest/static/js/2.36cbb3e9.chunk.js",
+    "static/js/2.36cbb3e9.chunk.js.map": "/rubefest/static/js/2.36cbb3e9.chunk.js.map",
     "fonts/Livvic_100Thin.ttf": "/rubefest/./fonts/Livvic_100Thin.ttf",
     "fonts/Livvic_100Thin_Italic.ttf": "/rubefest/./fonts/Livvic_100Thin_Italic.ttf",
     "fonts/Livvic_200ExtraLight.ttf": "/rubefest/./fonts/Livvic_200ExtraLight.ttf",
@@ -29,13 +29,14 @@
     "index.html": "/rubefest/index.html",
     "manifest.json": "/rubefest/manifest.json",
     "serve.json": "/rubefest/serve.json",
-    "static/js/2.a6357298.chunk.js.LICENSE.txt": "/rubefest/static/js/2.a6357298.chunk.js.LICENSE.txt",
+    "static/js/2.36cbb3e9.chunk.js.LICENSE.txt": "/rubefest/static/js/2.36cbb3e9.chunk.js.LICENSE.txt",
     "static/media/circus.png": "/rubefest/static/media/circus.999d22df.png",
     "static/media/clown.png": "/rubefest/static/media/clown.8188e9df.png",
     "static/media/crystal-ball.png": "/rubefest/static/media/crystal-ball.5f58cbfe.png",
     "static/media/juggling.png": "/rubefest/static/media/juggling.4bd31626.png",
     "static/media/lion.png": "/rubefest/static/media/lion.c830fd27.png",
     "static/media/magic-wand.png": "/rubefest/static/media/magic-wand.c4a9018f.png",
+    "static/media/overall.png": "/rubefest/static/media/overall.45b80957.png",
     "static/media/ring.png": "/rubefest/static/media/ring.d7271b62.png",
     "static/media/snake.png": "/rubefest/static/media/snake.d78135c9.png",
     "static/media/tarot-card.png": "/rubefest/static/media/tarot-card.0d6c6e10.png",
@@ -45,7 +46,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.61063793.js",
-    "static/js/2.a6357298.chunk.js",
-    "static/js/app.2cad75af.chunk.js"
+    "static/js/2.36cbb3e9.chunk.js",
+    "static/js/app.7193161d.chunk.js"
   ]
 }
