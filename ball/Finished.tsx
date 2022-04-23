@@ -1,27 +1,22 @@
-import React, { FC, memo, useCallback, useState } from 'react';
+import React, { FC, memo, useCallback, useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, Share } from 'react-native'
 import { STYLES } from "../styles";
-import { PERFORMERS, FINAL_PERF_SIZE } from "./constants";
-import { Answer } from "./model";
 import { Page } from "../components/Page";
 import { Anchor } from "../components/Anchor";
+import { ANSWERS, INFO } from "./constants";
+import ball from '../assets/images/crystal-ball.png';
+import overall from '../assets/images/overall.png';
 
 interface Props {
-    answers: Answer[];
     reset: () => void;
     navigation: any;
 }
 
 export const Finished: FC<Props> = memo(props => {
-    const { reset, answers, navigation } = props;
-    const [showQuizInfo, setShowQuizInfo] = useState<boolean>();
+    const { reset, navigation } = props;
+    const [showInfo, setShowInfo] = useState<boolean>();
     const [shareError, setShareError] = useState<string>();
-
-    const points = answers.reduce((val, next) => {
-        return val + next.points;
-    }, 0);
-    const performers = PERFORMERS.filter((perf) => perf.points >= points);
-    const performer = performers[0];
+    const [answer, setAnswer] = useState<string>();
 
     const onClick = useCallback(() => {
         setTimeout(() => {
@@ -30,10 +25,14 @@ export const Finished: FC<Props> = memo(props => {
         }, 500);
     }, []);
 
+    useEffect(() => {
+        setAnswer([...ANSWERS].sort(() => 0.5 - Math.random())[0]);
+    }, []);
+
     const onShare = useCallback(async () => {
         try {
             const result = await Share.share({
-                message: 'RubeFest Circus - I am a ' + performer.name + '!',
+                message: 'Cletus\' Crystall Ball - Cletus says, "' + answer + '"',
                 url: 'https://corynathe.github.io/rubefest/',
             });
             if (result.action === Share.sharedAction) {
@@ -50,46 +49,38 @@ export const Finished: FC<Props> = memo(props => {
                 setShareError(error?.message || 'Sorry! Sharing not supported on this device.');
             }
         }
-    }, [performer]);
+    }, [answer]);
 
-    const onQuizInfo = useCallback(() => {
-        setShowQuizInfo(true);
+    const onInfo = useCallback(() => {
+        setShowInfo(true);
     }, []);
 
-    const closeQuizInfo = useCallback(() => {
-        setShowQuizInfo(false);
+    const closeInfo = useCallback(() => {
+        setShowInfo(false);
     }, []);
 
     return (
-        <Page>
-            {showQuizInfo ? (
+        <Page icon={ball}>
+            {showInfo ? (
                 <>
-                    <Text style={[STYLES.title, { fontSize: 30 }]}>Meet the performers!</Text>
-                    <View style={[STYLES.rowCenter]}>
-                        <ShowPerformer name={PERFORMERS[0].name} image={PERFORMERS[0].image} />
-                        <ShowPerformer name={PERFORMERS[1].name} image={PERFORMERS[1].image} />
-                        <ShowPerformer name={PERFORMERS[2].name} image={PERFORMERS[2].image} />
-                    </View>
-                    <View style={[STYLES.rowCenter]}>
-                        <ShowPerformer name={PERFORMERS[3].name} image={PERFORMERS[3].image} />
-                        <ShowPerformer name={PERFORMERS[4].name} image={PERFORMERS[4].image} />
-                        <ShowPerformer name={PERFORMERS[5].name} image={PERFORMERS[5].image} />
-                    </View>
-                    <View style={[STYLES.rowCenter]}>
-                        <ShowPerformer name={PERFORMERS[6].name} image={PERFORMERS[6].image} />
-                        <ShowPerformer name={PERFORMERS[7].name} image={PERFORMERS[7].image} />
-                        <ShowPerformer name={PERFORMERS[8].name} image={PERFORMERS[8].image} />
-                    </View>
-                    <TouchableOpacity style={STYLES.button} onPress={closeQuizInfo}>
+                    <Text style={[STYLES.title, { fontSize: 30 }]}>Facts about Cletus:</Text>
+                    {INFO.map((info, index) => {
+                        return (
+                            <View key={index} style={[STYLES.rowCenter, { paddingBottom: 20 }]}>
+                                <Text style={[STYLES.infoText]}>{info}</Text>
+                            </View>
+                        )
+                    })}
+                    <TouchableOpacity style={STYLES.button} onPress={closeInfo}>
                         <Text style={STYLES.buttonText}>
-                            Close Quiz Info
+                            Close Info
                         </Text>
                     </TouchableOpacity>
                     <View style={{ paddingTop: 10 }}>
                         <Text style={{ fontSize: 10 }}>
-                            Circus icons created by{' '}
-                            <Anchor href="https://www.flaticon.com/free-icons/circus">
-                                Freepik - Flaticon
+                            Crystall ball icons created by{' '}
+                            <Anchor href="https://www.flaticon.com/free-icons/crystal-ball">
+                                iconixar - Flaticon
                             </Anchor>
                         </Text>
                         <Text style={{ fontSize: 10 }}>
@@ -103,11 +94,10 @@ export const Finished: FC<Props> = memo(props => {
             ) : (
                 <>
                     <Text style={STYLES.title}>
-                        You are a ...
+                        Cletus says,
                     </Text>
-                    <Image source={performer.image} style={{ width: FINAL_PERF_SIZE, height: FINAL_PERF_SIZE }} />
                     <Text style={STYLES.subtitle}>
-                        {performer.name}
+                        "{answer}"
                     </Text>
                     <View style={[STYLES.row]}>
                         <TouchableOpacity style={STYLES.button} onPress={onClick}>
@@ -120,9 +110,9 @@ export const Finished: FC<Props> = memo(props => {
                                 Share
                             </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={STYLES.button} onPress={onQuizInfo}>
+                        <TouchableOpacity style={STYLES.button} onPress={onInfo}>
                             <Text style={STYLES.buttonText}>
-                                Quiz Info
+                                Game Info
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -133,18 +123,4 @@ export const Finished: FC<Props> = memo(props => {
             )}
         </Page>
     )
-});
-
-interface PerfProps {
-    name: string;
-    image: any
-}
-
-const ShowPerformer: FC<PerfProps> = memo(props => {
-    return (
-        <View style={{ justifyContent: 'space-around', alignItems: 'center', width: 120, padding: 10 }}>
-            <Image source={props.image} style={{ width: 50, height: 50 }} />
-            <Text style={[STYLES.infoText]}>{props.name}</Text>
-        </View>
-    );
 });

@@ -1,13 +1,13 @@
 import { StyleSheet, StatusBar } from "react-native";
 
-const THEME1 = {
+export const THEME1 = {
     yellow: '#f2bd4d',
     orange: '#ec5d37',
     blue: '#0da9b1',
     light: '#ffedd4',
     green: '#004649',
 }
-const THEME2 = {
+export const THEME2 = {
     navy: '#3e4f6b',
     brown: '#302d2c',
     light: '#f2e4d0',
@@ -118,11 +118,20 @@ export const STYLES = StyleSheet.create({
     buttonTextBlue: {
         color: THEME1.light,
     },
+    buttonDisabled: {
+        opacity: 0.5,
+    },
     infoText: {
         fontSize: 15,
         fontFamily: 'Rye_400Regular',
         color: THEME1.green,
         textAlign: 'center',
+    },
+    infoText2: {
+        fontSize: 20,
+        fontFamily: 'Rye_400Regular',
+        color: THEME1.green,
+        textAlign: 'left',
     },
     error: {
         fontSize: 20,
@@ -153,3 +162,4 @@ export const STYLES = StyleSheet.create({
         paddingLeft: 20,
     }
 });
+
