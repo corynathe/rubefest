@@ -66,7 +66,7 @@ export const Finished: FC<Props> = memo(props => {
                     <Text style={[STYLES.title, { fontSize: 30 }]}>Facts about Cletus:</Text>
                     {INFO.map((info, index) => {
                         return (
-                            <View key={index} style={[STYLES.rowCenter, { paddingBottom: 20 }]}>
+                            <View key={index} style={[STYLES.rowCenter, { paddingBottom: 15 }]}>
                                 <Text style={[STYLES.infoText]}>{info}</Text>
                             </View>
                         )
