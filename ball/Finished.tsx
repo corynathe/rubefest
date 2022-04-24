@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback, useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, Share } from 'react-native'
-import { STYLES } from "../styles";
+import { STYLES, HOME_URL } from "../styles";
 import { Page } from "../components/Page";
 import { Anchor } from "../components/Anchor";
 import { ANSWERS, INFO } from "./constants";
@@ -33,7 +33,7 @@ export const Finished: FC<Props> = memo(props => {
         try {
             const result = await Share.share({
                 message: 'Cletus\' Crystall Ball - Cletus says, "' + answer + '"',
-                url: 'https://corynathe.github.io/rubefest/',
+                url: HOME_URL,
             });
             if (result.action === Share.sharedAction) {
                 if (result.activityType) {
@@ -45,8 +45,11 @@ export const Finished: FC<Props> = memo(props => {
                 // dismissed
             }
         } catch (error) {
-            if (error?.message.toLowerCase().indexOf('cancel') === -1) {
-                setShareError(error?.message || 'Sorry! Sharing not supported on this device.');
+            // if (error?.message.toLowerCase().indexOf('cancel') === -1) {
+            //     setShareError(error?.message || 'Sorry! Sharing not supported on this device.');
+            // }
+            if (error?.message.toLowerCase().indexOf('not supported') > -1) {
+                setShareError(error?.message);
             }
         }
     }, [answer]);
