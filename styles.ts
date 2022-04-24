@@ -1,5 +1,7 @@
 import { StyleSheet, StatusBar } from "react-native";
 
+export const HOME_URL = 'https://corynathe.github.io/rubefest';
+
 export const THEME1 = {
     yellow: '#f2bd4d',
     orange: '#ec5d37',

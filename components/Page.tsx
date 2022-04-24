@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Rye_400Regular, useFonts } from "@expo-google-fonts/rye";
 import { Livvic_400Regular } from "@expo-google-fonts/livvic";
 
-import { STYLES } from "../styles";
+import { STYLES, HOME_URL } from "../styles";
 import circus from '../assets/images/circus.png';
 
 interface Props {
@@ -20,17 +20,18 @@ export const Page: FC<Props> = memo(props => {
     const [fontsLoaded] = useFonts({ Rye_400Regular, Livvic_400Regular });
     const insets = useSafeAreaInsets();
     const _icon = icon ?? circus;
+    const _hideHeaderFooter = hideHeaderFooter || window.innerHeight < 650;
 
     const navigate = useCallback(() => {
         if (goHome) goHome();
-        else navigation.navigate('Home');
+        else window.location.href = HOME_URL;
     }, [goHome, navigation]);
 
     if (!fontsLoaded) return null;
 
     return (
         <View style={[STYLES.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-            {!hideHeaderFooter && (
+            {!_hideHeaderFooter && (
                 <View style={[STYLES.row]}>
                     <Image source={_icon} style={{ width: 50, height: 50 }} />
                     {status !== undefined && navigation && (
@@ -48,7 +49,7 @@ export const Page: FC<Props> = memo(props => {
             <View style={STYLES.main}>
                 {children}
             </View>
-            {!hideHeaderFooter && (
+            {!_hideHeaderFooter && (
                 <View style={[STYLES.row]}>
                     <Image source={_icon} style={{ width: 50, height: 50 }} />
                     {status !== undefined && <Text style={STYLES.footerTitle}>{status}</Text>}
