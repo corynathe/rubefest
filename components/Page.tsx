@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Rye_400Regular, useFonts } from "@expo-google-fonts/rye";
 import { Livvic_400Regular } from "@expo-google-fonts/livvic";
 
-import { STYLES, HOME_URL } from "../styles";
+import { STYLES } from "../styles";
 import circus from '../assets/images/circus.png';
 
 interface Props {
@@ -20,11 +20,11 @@ export const Page: FC<Props> = memo(props => {
     const [fontsLoaded] = useFonts({ Rye_400Regular, Livvic_400Regular });
     const insets = useSafeAreaInsets();
     const _icon = icon ?? circus;
-    const _hideHeaderFooter = hideHeaderFooter || window.innerHeight < 650;
+    const _hideHeaderFooter = hideHeaderFooter || window.innerHeight < 640;
 
     const navigate = useCallback(() => {
         if (goHome) goHome();
-        else window.location.href = HOME_URL;
+        else navigation.navigate('Home');
     }, [goHome, navigation]);
 
     if (!fontsLoaded) return null;

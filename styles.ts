@@ -106,6 +106,8 @@ export const STYLES = StyleSheet.create({
         marginTop: 40,
         padding: 15,
         backgroundColor: THEME1.yellow,
+        borderColor: THEME1.green,
+        borderWidth: 1,
         borderRadius: 10,
     },
     buttonText: {

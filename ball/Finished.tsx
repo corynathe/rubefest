@@ -5,7 +5,6 @@ import { Page } from "../components/Page";
 import { Anchor } from "../components/Anchor";
 import { ANSWERS, INFO } from "./constants";
 import ball from '../assets/images/crystal-ball.png';
-import overall from '../assets/images/overall.png';
 
 interface Props {
     reset: () => void;

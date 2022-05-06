@@ -9,8 +9,9 @@ import { GetStarted } from '../components/GetStarted';
 import { Finished } from './Finished';
 import { ACTIONS } from './constants';
 import ball from '../assets/images/crystal-ball.png';
-import overall from '../assets/images/overall.png';
 import animista from '../assets/animista.css';
+
+const ACTIONS_NEEDED = 1;
 
 export const CrystalBall: FC<NativeStackScreenProps> = memo(props => {
     const { navigation } = props;
@@ -35,9 +36,9 @@ export const CrystalBall: FC<NativeStackScreenProps> = memo(props => {
     }, []);
 
     useEffect(() => {
-        if (actionCount < ACTIONS.length) {
+        if (actionCount < ACTIONS_NEEDED) {
             setInProgress(false);
-        } else if (actionCount === ACTIONS.length) {
+        } else if (actionCount === ACTIONS_NEEDED) {
             setTimeout(() => setFinished(true), 500);
         }
     }, [actionCount, ACTIONS]);
@@ -74,25 +75,27 @@ export const CrystalBall: FC<NativeStackScreenProps> = memo(props => {
     }
 
     return (
-        <Page status={'Cletus\' Crystal Ball'} icon={overall} goHome={goHome} navigation={navigation}>
+        <Page status={'Cletus\' Crystal Ball'} icon={ball} goHome={goHome} navigation={navigation}>
             <View>
                 <Text style={[STYLES.question]}>
-                    Ask your question and then use the crystal ball to get your answer.
+                    Ask the crystal ball a question and select a button to reveal Cletus' answer.
                 </Text>
             </View>
             <View stlye={[STYLES.row, animista.loadAnimista]}>
-                <Image source={ball} ref={ballEl} style={{ width: 250, height: 250, marginBottom: 30 }} />
+                <Image source={ball} ref={ballEl} style={{ width: 250, height: 250 }} />
             </View>
-            <View style={[STYLES.row]}>
-                {(inProgress || actionCount > 0) && (
-                    <Progress.Bar
-                        progress={actionCount / ACTIONS.length}
-                        color={THEME1.blue}
-                        width={WIDTH}
-                        height={25}
-                    />
-                )}
-            </View>
+            {ACTIONS_NEEDED > 1 && (
+                <View style={[STYLES.row]}>
+                    {(inProgress || actionCount > 0) && (
+                        <Progress.Bar
+                            progress={actionCount / ACTIONS_NEEDED}
+                            color={THEME1.blue}
+                            width={WIDTH}
+                            height={25}
+                        />
+                    )}
+                </View>
+            )}
             <View style={[STYLES.row]}>
                 {ACTIONS.map((action, index) => {
                     return (

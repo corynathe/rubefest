@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, FC, memo, useEffect } from 'react';
+import React, { FC, memo } from 'react';
 import { Text, TouchableOpacity, Image, View } from 'react-native'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -11,13 +11,6 @@ import card from './assets/images/tarot-card.png';
 export const Home: FC<NativeStackScreenProps> = memo(props => {
     const { navigation } = props;
     const size = 85;
-
-    useEffect(() => {
-        const hash = window.location.hash;
-        if (hash?.toLowerCase() === '#ball') navigation.navigate('Ball');
-        if (hash?.toLowerCase() === '#quiz') navigation.navigate('Quiz');
-        if (hash?.toLowerCase() === '#tarot') navigation.navigate('Tarot');
-    }, []);
 
     return (
         <Page hideHeaderFooter>

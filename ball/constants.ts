@@ -34,4 +34,5 @@ export const ANSWERS = [
     'Why don\'t we just pretend I answered and move on.',
     'Go ask Darla.',
     'Go ask Rube.',
+    'Ya sure you betcha',
 ];
