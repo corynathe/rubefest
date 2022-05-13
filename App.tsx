@@ -8,7 +8,7 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import { Home } from "./Home";
 import { Quiz } from "./quiz/Quiz";
 import { CrystalBall } from "./ball/CrystalBall";
-import { TarotCards } from "./tarot/TarotCards";
+import { Maze } from "./maze/Maze";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +20,7 @@ export default function App() {
                 <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
                 <Stack.Screen name="Quiz" component={Quiz} options={{ headerShown: false }} />
                 <Stack.Screen name="Ball" component={CrystalBall} options={{ headerShown: false }} />
-                <Stack.Screen name="Tarot" component={TarotCards} options={{ headerShown: false }} />
+                <Stack.Screen name="Maze" component={Maze} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
         <StatusBar  />

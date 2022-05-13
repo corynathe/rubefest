@@ -6,7 +6,7 @@ import { STYLES } from "./styles";
 import { Page } from './components/Page';
 import ball from './assets/images/crystal-ball.png';
 import circus from './assets/images/circus.png';
-import card from './assets/images/tarot-card.png';
+import overall from './assets/images/overall.png';
 
 export const Home: FC<NativeStackScreenProps> = memo(props => {
     const { navigation } = props;
@@ -23,9 +23,9 @@ export const Home: FC<NativeStackScreenProps> = memo(props => {
                     <Text style={STYLES.cardText}>Cletus' Crystal Ball</Text>
                     <Image source={ball} style={{ width: size, height: size }} />
                 </TouchableOpacity>
-                <TouchableOpacity style={[STYLES.row, STYLES.card, STYLES.card_yellow]} onPress={() => navigation.navigate('Tarot')}>
-                    <Image source={card} style={{ width: size, height: size }} />
-                    <Text style={STYLES.cardText}>Cletus' Tarot Reading</Text>
+                <TouchableOpacity style={[STYLES.row, STYLES.card, STYLES.card_yellow]} onPress={() => navigation.navigate('Maze')}>
+                    <Image source={overall} style={{ width: size, height: size }} />
+                    <Text style={STYLES.cardText}>Cletus' House of Mirrors</Text>
                 </TouchableOpacity>
             </View>
         </Page>

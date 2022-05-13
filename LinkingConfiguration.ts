@@ -4,7 +4,7 @@ import * as Linking from 'expo-linking';
 type RootStackParamList = {
     Quiz: undefined;
     Ball: undefined;
-    Tarot: undefined;
+    Maze: undefined;
     Home: undefined;
 };
 
@@ -14,7 +14,7 @@ const linking: LinkingOptions<RootStackParamList> = {
         screens: {
             Quiz: 'Quiz',
             Ball: 'Ball',
-            Tarot: 'Tarot',
+            Maze: 'Maze',
             Home: '*',
         },
     },

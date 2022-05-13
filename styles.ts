@@ -164,6 +164,35 @@ export const STYLES = StyleSheet.create({
         fontFamily: 'Rye_400Regular',
         color: THEME1.light,
         paddingLeft: 20,
+    },
+
+    maze: {
+    },
+    rowMaze: {
+        flexDirection: 'row',
+        width: WIDTH,
+    },
+    square: {
+        height: 45,
+        width: 45,
+        backgroundColor: THEME1.yellow,
+        borderColor: THEME1.orange,
+    },
+    squareTop: {
+        borderTopWidth: 2,
+    },
+    squareRight: {
+        borderRightWidth: 2,
+    },
+    squareBottom: {
+        borderBottomWidth: 2,
+    },
+    squareLeft: {
+        borderLeftWidth: 2,
+    },
+    mazeArrow: {
+        marginLeft: 9,
+        marginTop: 7,
     }
 });
 
