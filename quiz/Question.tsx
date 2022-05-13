@@ -4,6 +4,7 @@ import { Question, Answer } from "./model";
 import { ACTION_TIMER } from "./constants";
 import { STYLES } from "../styles";
 import { Page } from "../components/Page";
+import circus from '../assets/images/circus.png';
 
 interface Props {
     status: string;
@@ -27,7 +28,7 @@ export const QuestionDisplay: FC<Props> = memo(props => {
     }, [selectedAnswer]);
 
     return (
-        <Page status={status} navigation={navigation}>
+        <Page icon={circus} status={status} navigation={navigation}>
             <View>
                 <Text style={STYLES.question}>
                     {question.text}

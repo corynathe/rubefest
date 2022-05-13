@@ -5,7 +5,7 @@ import { Rye_400Regular, useFonts } from "@expo-google-fonts/rye";
 import { Livvic_400Regular } from "@expo-google-fonts/livvic";
 
 import { STYLES } from "../styles";
-import circus from '../assets/images/circus.png';
+import rubefestIcon from '../assets/icon.png';
 
 interface Props {
     hideHeaderFooter?: boolean;
@@ -19,7 +19,7 @@ export const Page: FC<Props> = memo(props => {
     const { children, status, hideHeaderFooter, navigation, goHome, icon } = props;
     const [fontsLoaded] = useFonts({ Rye_400Regular, Livvic_400Regular });
     const insets = useSafeAreaInsets();
-    const _icon = icon ?? circus;
+    const _icon = icon ?? rubefestIcon;
     const _hideHeaderFooter = hideHeaderFooter || window.innerHeight < 640;
 
     const navigate = useCallback(() => {
