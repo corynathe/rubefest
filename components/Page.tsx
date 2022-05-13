@@ -9,6 +9,7 @@ import rubefestIcon from '../assets/icon.png';
 
 interface Props {
     hideHeaderFooter?: boolean;
+    hideFooter?: boolean;
     status?: string;
     icon?: any;
     goHome?: () => void;
@@ -16,7 +17,7 @@ interface Props {
 }
 
 export const Page: FC<Props> = memo(props => {
-    const { children, status, hideHeaderFooter, navigation, goHome, icon } = props;
+    const { children, status, hideHeaderFooter, hideFooter, navigation, goHome, icon } = props;
     const [fontsLoaded] = useFonts({ Rye_400Regular, Livvic_400Regular });
     const insets = useSafeAreaInsets();
     const _icon = icon ?? rubefestIcon;
@@ -49,7 +50,7 @@ export const Page: FC<Props> = memo(props => {
             <View style={STYLES.main}>
                 {children}
             </View>
-            {!_hideHeaderFooter && (
+            {!_hideHeaderFooter && !hideFooter && (
                 <View style={[STYLES.row]}>
                     <Image source={_icon} style={{ width: 50, height: 50 }} />
                     {status !== undefined && <Text style={STYLES.footerTitle}>{status}</Text>}

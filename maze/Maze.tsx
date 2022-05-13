@@ -85,7 +85,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     if (!squares) return null;
 
     return (
-        <Page icon={overall} status="House of Mirrors" navigation={navigation}>
+        <Page icon={overall} status={''} hideFooter navigation={navigation}>
             <View style={[STYLES.maze]}>
                 {squares.map((rowSquares, r) => {
                     return (
@@ -97,10 +97,10 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                                     return (
                                         <View key={c} style={styles}>
                                             {r === overallRow && c === overallCol && (
-                                                <Image source={overall} style={{ width: 36, height: 36, marginTop: 2, marginLeft: 2 }} />
+                                                <Image source={overall} style={{ width: 34, height: 34 }} />
                                             )}
                                             {r === hatRow && c === hatCol && (
-                                                <Image source={hat} style={{ width: 40, height: 40 }} />
+                                                <Image source={hat} style={{ width: 35, height: 35 }} />
                                             )}
                                             {_canGoRight && r === overallRow && c === (overallCol + 1) && (
                                                 <TouchableOpacity onPress={() => onMove(0,1)}>
@@ -147,8 +147,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
 });
 
 const ROWS = [0,1,2,3,4,5,6,7,8,9,10,11];
-// const ROWS = [0,1,2,3,4,5,6,7];
-const COLS = [0,1,2,3,4,5,6,7];
+const COLS = [0,1,2,3,4,5,6,7,8];
 
 const getMazeSquares = () => {
     const rowSquares = [];

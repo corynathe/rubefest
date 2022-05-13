@@ -173,8 +173,8 @@ export const STYLES = StyleSheet.create({
         width: WIDTH,
     },
     square: {
-        height: 45,
-        width: 45,
+        height: 38,
+        width: 38,
         backgroundColor: THEME1.yellow,
         borderColor: THEME1.orange,
     },
@@ -191,8 +191,8 @@ export const STYLES = StyleSheet.create({
         borderLeftWidth: 2,
     },
     mazeArrow: {
-        marginLeft: 9,
-        marginTop: 7,
+        marginLeft: 6,
+        marginTop: 5,
     }
 });
 
