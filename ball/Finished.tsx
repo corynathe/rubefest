@@ -31,7 +31,7 @@ export const Finished: FC<Props> = memo(props => {
     const onShare = useCallback(async () => {
         try {
             const result = await Share.share({
-                message: 'Cletus\' Crystall Ball - Cletus says, "' + answer + '"',
+                message: 'Cletus\' Crystal Ball - Cletus says, "' + answer + '"',
                 url: HOME_URL,
             });
             if (result.action === Share.sharedAction) {
@@ -80,7 +80,7 @@ export const Finished: FC<Props> = memo(props => {
                     </TouchableOpacity>
                     <View style={{ paddingTop: 10 }}>
                         <Text style={{ fontSize: 10 }}>
-                            Crystall ball icons created by{' '}
+                            Crystal ball icons created by{' '}
                             <Anchor href="https://www.flaticon.com/free-icons/crystal-ball">
                                 iconixar - Flaticon
                             </Anchor>

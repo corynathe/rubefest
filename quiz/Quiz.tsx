@@ -38,7 +38,7 @@ export const Quiz: FC<NativeStackScreenProps> = memo(props => {
                 next={startQuiz}
                 icon={circus}
                 title={'RubeFest Circus'}
-                description={'Which Performer Are You?'}
+                description={'Find out which performer you would be!'}
                 buttonText={'Get Started'}
             />
         );

@@ -25,20 +25,33 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
 
     const reset = useCallback(() => {
         setGetStarted(true);
+        restart(false);
+    }, []);
+
+    const restart = useCallback((shouldGenerate = true) => {
         setSquares(undefined);
         setOverallRow(0);
         setOverallCol(0);
+        if (shouldGenerate) generateMaze();
     }, []);
 
-    useEffect(() => {
-        let count = 0;
+    const generateMaze = () => {
+        let count = 1;
         let generatedSquares = getMazeSquares();
-        console.log(count++);
         while (!validMazeSquares(generatedSquares)) {
             generatedSquares = getMazeSquares();
-            console.log(count++);
+            count++;
+
+            // give up after attempting for awhile
+            if (count > 1000) break;
         }
+
+        console.log('Generate attempts: ' + count);
         setSquares(generatedSquares);
+    }
+
+    useEffect(() => {
+        generateMaze();
     }, []);
 
     const goHome = useCallback(() => {
@@ -63,7 +76,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                 next={startMaze}
                 icon={overall}
                 title={'Cletus\' House of Mirrors'}
-                description={'Cletus lost his hat! Can you help him find it back?'}
+                description={'Oh Cletus, not again! Can you help him find his hat back?'}
                 buttonText={'Get Started'}
             />
         )
@@ -117,10 +130,15 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                     )
                 })}
             </View>
-            <View>
+            <View style={[STYLES.row]}>
                 <TouchableOpacity style={STYLES.button} onPress={goHome}>
                     <Text style={STYLES.buttonText}>
                         Home
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={STYLES.button} onPress={restart}>
+                    <Text style={STYLES.buttonText}>
+                        Restart
                     </Text>
                 </TouchableOpacity>
             </View>

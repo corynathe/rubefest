@@ -5,6 +5,7 @@ import { PERFORMERS, FINAL_PERF_SIZE } from "./constants";
 import { Answer } from "./model";
 import { Page } from "../components/Page";
 import { Anchor } from "../components/Anchor";
+import circus from '../assets/images/circus.png';
 
 interface Props {
     answers: Answer[];
@@ -64,7 +65,7 @@ export const Finished: FC<Props> = memo(props => {
     }, []);
 
     return (
-        <Page>
+        <Page icon={circus}>
             {showQuizInfo ? (
                 <>
                     <Text style={[STYLES.title, { fontSize: 30 }]}>Meet the performers!</Text>
