@@ -77,13 +77,13 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
             const x = e.translationX;
             const y = e.translationY;
             if (Math.abs(x) > Math.abs(y) && x > 0) {
-                onMove(0,1);
+                if (_canGoRight) onMove(0,1);
             } else if (Math.abs(x) > Math.abs(y) && x < 0) {
-                onMove(0,-1);
+                if (_canGoLeft) onMove(0,-1);
             } else if (y > 0) {
-                onMove(1,0);
+                if (_canGoDown) onMove(1,0);
             } else {
-                onMove(-1,0);
+                if (_canGoUp) onMove(-1,0);
             }
         });
 
