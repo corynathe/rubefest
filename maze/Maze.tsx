@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useCallback, FC, memo, useEffect } from 'react';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Gesture, GestureDetector, Directions } from 'react-native-gesture-handler';
 
 import { STYLES, THEME1 } from "../styles";
 import { Page } from '../components/Page';
@@ -70,6 +71,22 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         setGetStarted(false);
     }, []);
 
+    const flingGesture = Gesture.Fling()
+        .direction(Directions.RIGHT | Directions.UP)
+        .onEnd((e) => {
+            const x = e.translationX;
+            const y = e.translationY;
+            if (Math.abs(x) > Math.abs(y) && x > 0) {
+                onMove(0,1);
+            } else if (Math.abs(x) > Math.abs(y) && x < 0) {
+                onMove(0,-1);
+            } else if (y > 0) {
+                onMove(1,0);
+            } else {
+                onMove(-1,0);
+            }
+        });
+
     if (getStarted) {
         return (
             <GetStarted
@@ -86,7 +103,16 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
 
     return (
         <Page icon={overall} status={''} hideFooter navigation={navigation}>
-            <View style={[STYLES.maze]}>
+            <View style={[STYLES.row, { paddingBottom: 10 }]}>
+                <Text style={STYLES.infoText}>Use</Text>
+                <MaterialCommunityIcons name="gesture-swipe" size={25} color={THEME1.green} />
+                <Text style={STYLES.infoText}>or click the </Text>
+                <FontAwesome5 name='arrow-left' size={20} color={THEME1.green} />
+                <FontAwesome5 name='arrow-right' size={20} color={THEME1.green} />
+                <Text style={STYLES.infoText}>to move Cletus.</Text>
+            </View>
+            <GestureDetector gesture={flingGesture}>
+                <View style={[STYLES.maze]}>
                 {squares.map((rowSquares, r) => {
                     return (
                         <View key={r} style={[STYLES.row]}>
@@ -130,6 +156,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                     )
                 })}
             </View>
+            </GestureDetector>
             <View style={[STYLES.row]}>
                 <TouchableOpacity style={STYLES.button} onPress={goHome}>
                     <Text style={STYLES.buttonText}>
@@ -138,7 +165,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                 </TouchableOpacity>
                 <TouchableOpacity style={STYLES.button} onPress={restart}>
                     <Text style={STYLES.buttonText}>
-                        Restart
+                        Reset
                     </Text>
                 </TouchableOpacity>
             </View>
