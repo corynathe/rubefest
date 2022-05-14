@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/rubefest/static/js/app.17a2c579.chunk.js",
-    "app.js.map": "/rubefest/static/js/app.17a2c579.chunk.js.map",
+    "app.js": "/rubefest/static/js/app.03f810ee.chunk.js",
+    "app.js.map": "/rubefest/static/js/app.03f810ee.chunk.js.map",
     "runtime~app.js": "/rubefest/static/js/runtime~app.61063793.js",
     "runtime~app.js.map": "/rubefest/static/js/runtime~app.61063793.js.map",
-    "static/js/2.77f06752.chunk.js": "/rubefest/static/js/2.77f06752.chunk.js",
-    "static/js/2.77f06752.chunk.js.map": "/rubefest/static/js/2.77f06752.chunk.js.map",
+    "static/js/2.a199d92e.chunk.js": "/rubefest/static/js/2.a199d92e.chunk.js",
+    "static/js/2.a199d92e.chunk.js.map": "/rubefest/static/js/2.a199d92e.chunk.js.map",
     "fonts/AntDesign.ttf": "/rubefest/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/rubefest/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/rubefest/./fonts/Feather.ttf",
@@ -41,7 +41,7 @@
     "index.html": "/rubefest/index.html",
     "manifest.json": "/rubefest/manifest.json",
     "serve.json": "/rubefest/serve.json",
-    "static/js/2.77f06752.chunk.js.LICENSE.txt": "/rubefest/static/js/2.77f06752.chunk.js.LICENSE.txt",
+    "static/js/2.a199d92e.chunk.js.LICENSE.txt": "/rubefest/static/js/2.a199d92e.chunk.js.LICENSE.txt",
     "static/media/circus.png": "/rubefest/static/media/circus.999d22df.png",
     "static/media/clown.png": "/rubefest/static/media/clown.8188e9df.png",
     "static/media/crystal-ball.png": "/rubefest/static/media/crystal-ball.5f58cbfe.png",
@@ -59,7 +59,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.61063793.js",
-    "static/js/2.77f06752.chunk.js",
-    "static/js/app.17a2c579.chunk.js"
+    "static/js/2.a199d92e.chunk.js",
+    "static/js/app.03f810ee.chunk.js"
   ]
 }
