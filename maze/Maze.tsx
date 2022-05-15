@@ -102,7 +102,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                 next={startMaze}
                 icon={overall}
                 title={'Cletus\' House of Mirrors'}
-                description={'Oh Cletus, not again! Can you help him find his hat back?'}
+                description={'Oh Cletus, not again! Can you help him find his hat?'}
                 buttonText={'Get Started'}
             />
         )

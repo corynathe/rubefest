@@ -53,8 +53,8 @@ export const Finished: FC<Props> = memo(props => {
                     <Image source={hat} ref={hatEl} style={{ width: 135, height: 135 }} />
                 </View>
                 <View style={[STYLES.row]}>
-                    <Image source={drink} ref={leftThumbEl} style={{ width: 80, height: 80, marginTop: 20 }} />
-                    <Image source={overall} ref={overallEl} style={{ width: 120, height: 250 }} />
+                    <Image source={drink} ref={leftThumbEl} style={{ width: 60, height: 80, marginTop: 20 }} />
+                    <Image source={overall} ref={overallEl} style={{ width: 130, height: 250 }} />
                     <Image source={thumb} ref={rightThumbEl} style={{ width: 60, height: 60, marginTop: 25 }} />
                 </View>
             </View>
