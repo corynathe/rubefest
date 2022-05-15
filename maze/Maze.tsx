@@ -7,12 +7,14 @@ import { Gesture, GestureDetector, Directions } from 'react-native-gesture-handl
 import { STYLES, THEME1 } from "../styles";
 import { Page } from '../components/Page';
 import { GetStarted } from '../components/GetStarted';
+import { Finished } from './Finished';
 import overall from '../assets/images/overall.png';
 import hat from '../assets/images/hat.png';
 
 export const Maze: FC<NativeStackScreenProps> = memo(props => {
     const { navigation } = props;
     const [getStarted, setGetStarted] = useState<boolean>(true);
+    const [finished, setFinished] = useState<boolean>(false);
     const [squares, setSquares] = useState();
     const [overallRow, setOverallRow] = useState<number>(0);
     const [overallCol, setOverallCol] = useState<number>(0);
@@ -30,6 +32,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     }, []);
 
     const restart = useCallback((shouldGenerate = true) => {
+        setFinished(false);
         setSquares(undefined);
         setOverallRow(0);
         setOverallCol(0);
@@ -67,6 +70,10 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         if (colChange !== 0) setOverallCol(overallCol + colChange);
     }, [overallRow, overallCol]);
 
+    useEffect(() => {
+        if (overallRow === hatRow && overallCol == hatCol) setFinished(true);
+    }, [overallRow, overallCol, hatRow, hatCol]);
+
     const startMaze = useCallback(() => {
         setGetStarted(false);
     }, []);
@@ -87,6 +94,8 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
             }
         });
 
+    if (!squares) return null;
+
     if (getStarted) {
         return (
             <GetStarted
@@ -99,7 +108,9 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         )
     }
 
-    if (!squares) return null;
+    if (finished) {
+        return <Finished goHome={goHome} restart={restart} />;
+    }
 
     return (
         <Page icon={overall} status={''} hideFooter navigation={navigation}>
@@ -119,31 +130,45 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                             <View style={[STYLES.rowMaze]}>
                                 {rowSquares.map((colSquares, c) => {
                                     const styles = [...colSquares];
+                                    const isOverall = r === overallRow && c === overallCol;
+                                    const isHat = r === hatRow && c === hatCol;
+                                    const isRightOfOverall = r === overallRow && c === (overallCol + 1);
+                                    const isLeftOfOverall = r === overallRow && c === (overallCol - 1);
+                                    const isBelowOverall = r === (overallRow + 1) && c === overallCol;
+                                    const isAboveOverall = r === (overallRow - 1) && c === overallCol;
 
                                     return (
                                         <View key={c} style={styles}>
-                                            {r === overallRow && c === overallCol && (
+                                            {isOverall && (
                                                 <Image source={overall} style={{ width: 34, height: 34 }} />
                                             )}
-                                            {r === hatRow && c === hatCol && (
-                                                <Image source={hat} style={{ width: 35, height: 35 }} />
+                                            {isHat && (
+                                                isRightOfOverall ? (
+                                                    <TouchableOpacity onPress={() => onMove(0,1)}>
+                                                        <Image source={hat} style={{ width: 35, height: 35 }} />
+                                                    </TouchableOpacity>
+                                                ) : isBelowOverall ? (
+                                                    <TouchableOpacity onPress={() => onMove(1,0)}>
+                                                        <Image source={hat} style={{ width: 35, height: 35 }} />
+                                                    </TouchableOpacity>
+                                                ) : <Image source={hat} style={{ width: 35, height: 35 }} />
                                             )}
-                                            {_canGoRight && r === overallRow && c === (overallCol + 1) && (
+                                            {_canGoRight && !isHat && isRightOfOverall && (
                                                 <TouchableOpacity onPress={() => onMove(0,1)}>
                                                     <FontAwesome5 name='arrow-right' size={25} color={THEME1.blue} style={STYLES.mazeArrow} />
                                                 </TouchableOpacity>
                                             )}
-                                            {_canGoLeft && r === overallRow && c === (overallCol - 1) && (
+                                            {_canGoLeft && isLeftOfOverall && (
                                                 <TouchableOpacity onPress={() => onMove(0,-1)}>
                                                     <FontAwesome5 name='arrow-left' size={25} color={THEME1.blue} style={STYLES.mazeArrow} />
                                                 </TouchableOpacity>
                                             )}
-                                            {_canGoDown && r === (overallRow + 1) && c === overallCol && (
+                                            {_canGoDown && !isHat && isBelowOverall && (
                                                 <TouchableOpacity onPress={() => onMove(1,0)}>
                                                     <FontAwesome5 name='arrow-down' size={25} color={THEME1.blue} style={STYLES.mazeArrow} />
                                                 </TouchableOpacity>
                                             )}
-                                            {_canGoUp && r === (overallRow - 1) && c === overallCol && (
+                                            {_canGoUp && isAboveOverall && (
                                                 <TouchableOpacity onPress={() => onMove(-1,0)}>
                                                     <FontAwesome5 name='arrow-up' size={25} color={THEME1.blue} style={STYLES.mazeArrow} />
                                                 </TouchableOpacity>
@@ -175,6 +200,8 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
 
 const ROWS = [0,1,2,3,4,5,6,7,8,9,10,11];
 const COLS = [0,1,2,3,4,5,6,7,8];
+// const ROWS = [0,1,2];
+// const COLS = [0,1,2];
 
 const getMazeSquares = () => {
     const rowSquares = [];

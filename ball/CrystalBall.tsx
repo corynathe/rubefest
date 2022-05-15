@@ -81,7 +81,7 @@ export const CrystalBall: FC<NativeStackScreenProps> = memo(props => {
                     Ask the crystal ball a question and click on a button below to reveal Cletus' answer.
                 </Text>
             </View>
-            <View stlye={[STYLES.row, animista.loadAnimista]}>
+            <View style={[STYLES.row, animista.loadAnimista]}>
                 <Image source={ball} ref={ballEl} style={{ width: 250, height: 250 }} />
             </View>
             {ACTIONS_NEEDED > 1 && (
