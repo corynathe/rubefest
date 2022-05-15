@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/rubefest/static/js/app.63202409.chunk.js",
-    "app.js.map": "/rubefest/static/js/app.63202409.chunk.js.map",
+    "app.js": "/rubefest/static/js/app.cb45ce47.chunk.js",
+    "app.js.map": "/rubefest/static/js/app.cb45ce47.chunk.js.map",
     "runtime~app.js": "/rubefest/static/js/runtime~app.61063793.js",
     "runtime~app.js.map": "/rubefest/static/js/runtime~app.61063793.js.map",
-    "static/js/2.f17db681.chunk.js": "/rubefest/static/js/2.f17db681.chunk.js",
-    "static/js/2.f17db681.chunk.js.map": "/rubefest/static/js/2.f17db681.chunk.js.map",
+    "static/js/2.37cdf397.chunk.js": "/rubefest/static/js/2.37cdf397.chunk.js",
+    "static/js/2.37cdf397.chunk.js.map": "/rubefest/static/js/2.37cdf397.chunk.js.map",
     "fonts/AntDesign.ttf": "/rubefest/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/rubefest/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/rubefest/./fonts/Feather.ttf",
@@ -41,10 +41,11 @@
     "index.html": "/rubefest/index.html",
     "manifest.json": "/rubefest/manifest.json",
     "serve.json": "/rubefest/serve.json",
-    "static/js/2.f17db681.chunk.js.LICENSE.txt": "/rubefest/static/js/2.f17db681.chunk.js.LICENSE.txt",
+    "static/js/2.37cdf397.chunk.js.LICENSE.txt": "/rubefest/static/js/2.37cdf397.chunk.js.LICENSE.txt",
     "static/media/circus.png": "/rubefest/static/media/circus.999d22df.png",
     "static/media/clown.png": "/rubefest/static/media/clown.8188e9df.png",
     "static/media/crystal-ball.png": "/rubefest/static/media/crystal-ball.5f58cbfe.png",
+    "static/media/drink.png": "/rubefest/static/media/drink.51c0889d.png",
     "static/media/hat.png": "/rubefest/static/media/hat.57be0608.png",
     "static/media/icon.png": "/rubefest/static/media/icon.4a204d60.png",
     "static/media/juggling.png": "/rubefest/static/media/juggling.4bd31626.png",
@@ -53,13 +54,14 @@
     "static/media/overall.png": "/rubefest/static/media/overall.45b80957.png",
     "static/media/ring.png": "/rubefest/static/media/ring.d7271b62.png",
     "static/media/snake.png": "/rubefest/static/media/snake.d78135c9.png",
+    "static/media/thumbs-up.png": "/rubefest/static/media/thumbs-up.1197ee22.png",
     "static/media/tightrope-walker.png": "/rubefest/static/media/tightrope-walker.51f08343.png",
     "static/media/trapeze.png": "/rubefest/static/media/trapeze.70db2279.png",
     "static/media/unicycle.png": "/rubefest/static/media/unicycle.1adcc726.png"
   },
   "entrypoints": [
     "static/js/runtime~app.61063793.js",
-    "static/js/2.f17db681.chunk.js",
-    "static/js/app.63202409.chunk.js"
+    "static/js/2.37cdf397.chunk.js",
+    "static/js/app.cb45ce47.chunk.js"
   ]
 }
