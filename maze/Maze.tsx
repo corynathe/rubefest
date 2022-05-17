@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, FC, memo, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, FC, memo, useEffect, useRef } from 'react';
 import { Text, TouchableOpacity, View, Image } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -20,7 +20,10 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     const [overallCol, setOverallCol] = useState<number>(0);
     const [hatRow, setHatRow] = useState<number>(ROWS.length - 1);
     const [hatCol, setHatCol] = useState<number>(COLS.length - 1);
+    const prevOverallRow = usePrevious(overallRow)
+    const prevOverallCol = usePrevious(overallCol)
 
+    const atStart = overallRow === 0 && overallCol === 0;
     const _canGoRight = canGoRight(squares, overallRow, overallCol);
     const _canGoLeft = canGoLeft(squares, overallRow, overallCol);
     const _canGoDown = canGoDown(squares, overallRow, overallCol);
@@ -71,7 +74,22 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     }, [overallRow, overallCol]);
 
     useEffect(() => {
-        if (overallRow === hatRow && overallCol == hatCol) setFinished(true);
+        if (overallRow === hatRow && overallCol == hatCol) {
+            setFinished(true);
+        } else if (!atStart && (_canGoUp + _canGoRight + _canGoDown + _canGoLeft) === 2) {
+            // only one move to make so take it
+            setTimeout(() => {
+                if (_canGoUp && !(prevOverallRow === (overallRow - 1) && prevOverallCol === overallCol)) {
+                    onMove(-1,0);
+                } else if (_canGoDown && !(prevOverallRow === (overallRow + 1) && prevOverallCol === overallCol)) {
+                    onMove(1,0);
+                } else if (_canGoRight && !(prevOverallRow === overallRow && prevOverallCol === (overallCol + 1))) {
+                    onMove(0,1);
+                } else if (_canGoLeft && !(prevOverallRow === overallRow && prevOverallCol === (overallCol - 1))) {
+                    onMove(0,-1);
+                }
+            }, 200);
+        }
     }, [overallRow, overallCol, hatRow, hatCol]);
 
     const startMaze = useCallback(() => {
@@ -300,4 +318,12 @@ const canGoDown = (squares: [], row: number, col: number): boolean => {
 const canGoUp = (squares: [], row: number, col: number): boolean => {
     return squares?.[row][col].indexOf(STYLES.squareTop) == -1
     && squares?.[row - 1][col].indexOf(STYLES.squareBottom) == -1;
+}
+
+function usePrevious(value: number) {
+    const ref = useRef();
+    useEffect(() => {
+        ref.current = value;
+    },[value]);
+    return ref.current;
 }
