@@ -137,6 +137,12 @@ export const STYLES = StyleSheet.create({
         color: THEME1.green,
         textAlign: 'left',
     },
+    infoText3: {
+        fontSize: 25,
+        fontFamily: 'Rye_400Regular',
+        color: THEME1.blue,
+        textAlign: 'center',
+    },
     error: {
         fontSize: 20,
         fontFamily: 'Livvic_400Regular',

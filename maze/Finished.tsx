@@ -1,6 +1,7 @@
 import React, { FC, memo, useCallback, useState, useEffect, useRef } from 'react';
 import { View, Text, Image, TouchableOpacity, Share } from 'react-native'
 import { STYLES } from "../styles";
+import { LEVELS } from './constants';
 import { Page } from "../components/Page";
 import { Anchor } from "../components/Anchor";
 import hat from '../assets/images/hat.png';
@@ -10,12 +11,13 @@ import drink from '../assets/images/drink.png';
 import animista from '../assets/animista.css';
 
 interface Props {
+    level: number;
     goHome: () => void;
     restart: () => void;
 }
 
 export const Finished: FC<Props> = memo(props => {
-    const { goHome, restart } = props;
+    const { goHome, restart, level } = props;
     const hatEl = useRef<HTMLDivElement>(null);
     const hatAction = 'shake-vertical';
     const leftThumbEl = useRef<HTMLDivElement>(null);
@@ -47,7 +49,7 @@ export const Finished: FC<Props> = memo(props => {
     }, []);
 
     return (
-        <Page icon={overall}>
+        <Page icon={overall} status={'House of Mirrors'} goHome={goHome}>
             <View style={[animista.loadAnimista]}>
                 <View style={[STYLES.row]}>
                     <Image source={hat} ref={hatEl} style={{ width: 135, height: 135 }} />
@@ -64,14 +66,14 @@ export const Finished: FC<Props> = memo(props => {
                         Home
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[STYLES.button, STYLES.buttonBlue]} onPress={doActions}>
+                <TouchableOpacity style={[STYLES.button, STYLES.buttonBlue]} onPress={restart}>
                     <Text style={[STYLES.buttonText, STYLES.buttonTextBlue]}>
-                        Dance
+                        {level < LEVELS.length - 1 ? 'Next Level' : 'Start Over'}
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={STYLES.button} onPress={restart}>
+                <TouchableOpacity style={STYLES.button} onPress={doActions}>
                     <Text style={STYLES.buttonText}>
-                        Reset
+                        Dance
                     </Text>
                 </TouchableOpacity>
             </View>

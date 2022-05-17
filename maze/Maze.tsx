@@ -5,6 +5,7 @@ import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Gesture, GestureDetector, Directions } from 'react-native-gesture-handler';
 
 import { STYLES, THEME1 } from "../styles";
+import { LEVELS } from './constants';
 import { Page } from '../components/Page';
 import { GetStarted } from '../components/GetStarted';
 import { Finished } from './Finished';
@@ -15,6 +16,8 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     const { navigation } = props;
     const [getStarted, setGetStarted] = useState<boolean>(true);
     const [finished, setFinished] = useState<boolean>(false);
+    const [level, setLevel] = useState<number>(0);
+    const [userMoves, setUserMoves] = useState<number>(0);
     const [squares, setSquares] = useState();
     const [overallRow, setOverallRow] = useState<number>(0);
     const [overallCol, setOverallCol] = useState<number>(0);
@@ -31,16 +34,22 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
 
     const reset = useCallback(() => {
         setGetStarted(true);
-        restart(false);
+        restart(false, false);
     }, []);
 
-    const restart = useCallback((shouldGenerate = true) => {
+    const nextLevel = useCallback(() => {
+        setLevel((level + 1) % LEVELS.length);
+    }, [level]);
+
+    const restart = useCallback((shouldGenerate = true, levelUp = true) => {
         setFinished(false);
+        setUserMoves(0);
         setSquares(undefined);
         setOverallRow(0);
         setOverallCol(0);
+        if (levelUp) nextLevel();
         if (shouldGenerate) generateMaze();
-    }, []);
+    }, [nextLevel]);
 
     const generateMaze = () => {
         let count = 1;
@@ -68,10 +77,11 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         }, 500);
     }, []);
 
-    const onMove = useCallback((rowChange, colChange) => {
+    const onMove = useCallback((rowChange, colChange, auto = false) => {
         if (rowChange !== 0) setOverallRow(overallRow + rowChange);
         if (colChange !== 0) setOverallCol(overallCol + colChange);
-    }, [overallRow, overallCol]);
+        if (!auto) setUserMoves(userMoves + 1);
+    }, [overallRow, overallCol, userMoves]);
 
     useEffect(() => {
         if (overallRow === hatRow && overallCol == hatCol) {
@@ -80,13 +90,13 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
             // only one move to make so take it
             setTimeout(() => {
                 if (_canGoUp && !(prevOverallRow === (overallRow - 1) && prevOverallCol === overallCol)) {
-                    onMove(-1,0);
+                    onMove(-1,0, true);
                 } else if (_canGoDown && !(prevOverallRow === (overallRow + 1) && prevOverallCol === overallCol)) {
-                    onMove(1,0);
+                    onMove(1,0, true);
                 } else if (_canGoRight && !(prevOverallRow === overallRow && prevOverallCol === (overallCol + 1))) {
-                    onMove(0,1);
+                    onMove(0,1, true);
                 } else if (_canGoLeft && !(prevOverallRow === overallRow && prevOverallCol === (overallCol - 1))) {
-                    onMove(0,-1);
+                    onMove(0,-1, true);
                 }
             }, 200);
         }
@@ -127,11 +137,16 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     }
 
     if (finished) {
-        return <Finished goHome={goHome} restart={restart} />;
+        return <Finished level={level} goHome={goHome} restart={restart} />;
     }
 
     return (
-        <Page icon={overall} status={''} hideFooter navigation={navigation}>
+        <Page hideHeaderFooter>
+            <View style={[STYLES.row, { paddingBottom: 10 }]}>
+                <Text style={[STYLES.infoText3]}>
+                    {LEVELS[level]}
+                </Text>
+            </View>
             <View style={[STYLES.row, { paddingBottom: 10 }]}>
                 <Text style={STYLES.infoText}>Use</Text>
                 <MaterialCommunityIcons name="gesture-swipe" size={25} color={THEME1.green} />
@@ -154,6 +169,15 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                                     const isLeftOfOverall = r === overallRow && c === (overallCol - 1);
                                     const isBelowOverall = r === (overallRow + 1) && c === overallCol;
                                     const isAboveOverall = r === (overallRow - 1) && c === overallCol;
+
+                                    // vanishing walls
+                                    if (level === 1 && userMoves > 0) {
+                                        if (userMoves < 10 ) {
+                                            styles.push({ borderColor: THEME1.orange + (100 - (userMoves * 10)) });
+                                        } else {
+                                            styles.push({ borderColor: THEME1.orange + '00' });
+                                        }
+                                    }
 
                                     return (
                                         <View key={c} style={styles}>
@@ -206,7 +230,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                         Home
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={STYLES.button} onPress={restart}>
+                <TouchableOpacity style={STYLES.button} onPress={() => restart(true, false)}>
                     <Text style={STYLES.buttonText}>
                         Reset
                     </Text>
