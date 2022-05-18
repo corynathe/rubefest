@@ -5,7 +5,7 @@ import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Gesture, GestureDetector, Directions } from 'react-native-gesture-handler';
 
 import { STYLES, THEME1 } from "../styles";
-import { LEVELS } from './constants';
+import { LEVELS, ROWS, COLS, COLORS } from './constants';
 import { Page } from '../components/Page';
 import { GetStarted } from '../components/GetStarted';
 import { Finished } from './Finished';
@@ -171,12 +171,14 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                                     const isAboveOverall = r === (overallRow - 1) && c === overallCol;
 
                                     // vanishing walls
-                                    if (level === 1 && userMoves > 0) {
+                                    if (level === 2 && userMoves > 0) {
                                         if (userMoves < 10 ) {
                                             styles.push({ borderColor: THEME1.orange + (100 - (userMoves * 10)) });
                                         } else {
                                             styles.push({ borderColor: THEME1.orange + '00' });
                                         }
+                                    } else if (level === 1) {
+                                        styles.push({ borderColor: COLORS[randomInt(COLORS.length - 1)] });
                                     }
 
                                     return (
@@ -239,11 +241,6 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         </Page>
     )
 });
-
-const ROWS = [0,1,2,3,4,5,6,7,8,9,10,11];
-const COLS = [0,1,2,3,4,5,6,7,8];
-// const ROWS = [0,1,2];
-// const COLS = [0,1,2];
 
 const getMazeSquares = () => {
     const rowSquares = [];
@@ -350,4 +347,8 @@ function usePrevious(value: number) {
         ref.current = value;
     },[value]);
     return ref.current;
+}
+
+function randomInt(max: number): number {
+    return Math.floor(Math.random() * (max + 1));
 }

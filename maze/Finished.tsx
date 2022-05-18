@@ -50,6 +50,11 @@ export const Finished: FC<Props> = memo(props => {
 
     return (
         <Page icon={overall} status={'House of Mirrors'} goHome={goHome}>
+            <View style={[STYLES.row]}>
+                <Text style={[STYLES.infoText2]}>
+                    Level {level + 1} Complete!
+                </Text>
+            </View>
             <View style={[animista.loadAnimista]}>
                 <View style={[STYLES.row]}>
                     <Image source={hat} ref={hatEl} style={{ width: 135, height: 135 }} />
