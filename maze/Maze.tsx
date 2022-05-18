@@ -170,15 +170,25 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                                     const isBelowOverall = r === (overallRow + 1) && c === overallCol;
                                     const isAboveOverall = r === (overallRow - 1) && c === overallCol;
 
+                                    // color wonder
+                                    if (level === 1) {
+                                        styles.push({ borderColor: COLORS[randomInt(COLORS.length - 1)] });
+                                    }
                                     // vanishing walls
-                                    if (level === 2 && userMoves > 0) {
-                                        if (userMoves < 10 ) {
+                                    else if (level === 2) {
+                                        if (userMoves === 0) {
+                                            // no-op
+                                        } else if (userMoves < 10 ) {
                                             styles.push({ borderColor: THEME1.orange + (100 - (userMoves * 10)) });
                                         } else {
                                             styles.push({ borderColor: THEME1.orange + '00' });
                                         }
-                                    } else if (level === 1) {
-                                        styles.push({ borderColor: COLORS[randomInt(COLORS.length - 1)] });
+                                    }
+                                    // losing focus
+                                    else if (level === 3) {
+                                        if (userMoves > 0 && (Math.abs(overallRow - r) > 1 || Math.abs(overallCol - c) > 1)) {
+                                            styles.push({ borderColor: THEME1.orange + '00' });
+                                        }
                                     }
 
                                     return (

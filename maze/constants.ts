@@ -19,4 +19,5 @@ export const LEVELS = [
     'Level 1: Simply A\'maze\'ing',
     'Level 2: Color Wonder',
     'Level 3: Vanishing Walls',
+    'Level 4: Losing Focus',
 ];
