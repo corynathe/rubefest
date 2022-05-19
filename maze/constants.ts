@@ -18,6 +18,7 @@ export const COLORS = [
 export const LEVELS = [
     'Level 1: Simply A\'maze\'ing',
     'Level 2: Color Wonder',
-    'Level 3: Vanishing Walls',
+    'Level 3: Fading Away',
     'Level 4: Losing Focus',
+    'Level 5: Make Your Move',
 ];

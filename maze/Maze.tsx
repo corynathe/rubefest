@@ -48,13 +48,13 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         setOverallRow(0);
         setOverallCol(0);
         if (levelUp) nextLevel();
-        if (shouldGenerate) generateMaze();
+        if (shouldGenerate) generateMaze(0, 0);
     }, [nextLevel]);
 
-    const generateMaze = () => {
+    const generateMaze = (startRow: number, startCol: number) => {
         let count = 1;
         let generatedSquares = getMazeSquares();
-        while (!validMazeSquares(generatedSquares)) {
+        while (!validMazeSquares(generatedSquares, startRow, startCol)) {
             generatedSquares = getMazeSquares();
             count++;
 
@@ -67,8 +67,15 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     }
 
     useEffect(() => {
-        generateMaze();
+        generateMaze(0, 0);
     }, []);
+
+    useEffect(() => {
+        // time for a change
+        if (level === 4 && userMoves > 0 && userMoves % 4 === 0) {
+            generateMaze(overallRow, overallCol);
+        }
+    }, [level, userMoves]);
 
     const goHome = useCallback(() => {
         setTimeout(() => {
@@ -86,8 +93,11 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     useEffect(() => {
         if (overallRow === hatRow && overallCol == hatCol) {
             setFinished(true);
+        } else if (level === 4) {
+            // no free moves in level (time for a change)
         } else if (!atStart && (_canGoUp + _canGoRight + _canGoDown + _canGoLeft) === 2) {
             // only one move to make so take it
+
             setTimeout(() => {
                 if (_canGoUp && !(prevOverallRow === (overallRow - 1) && prevOverallCol === overallCol)) {
                     onMove(-1,0, true);
@@ -100,7 +110,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                 }
             }, 200);
         }
-    }, [overallRow, overallCol, hatRow, hatCol]);
+    }, [overallRow, overallCol, hatRow, hatCol, level]);
 
     const startMaze = useCallback(() => {
         setGetStarted(false);
@@ -174,7 +184,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                                     if (level === 1) {
                                         styles.push({ borderColor: COLORS[randomInt(COLORS.length - 1)] });
                                     }
-                                    // vanishing walls
+                                    // fading away
                                     else if (level === 2) {
                                         if (userMoves === 0) {
                                             // no-op
@@ -294,10 +304,10 @@ const getMazeSquares = () => {
     return rowSquares;
 }
 
-const validMazeSquares = (squares: []): boolean => {
+const validMazeSquares = (squares: [], startRow: number, startCol: number): boolean => {
     const delim = '|';
     const accessedSquares = [];
-    const potentialSquares = [[0,0].join(delim)]
+    const potentialSquares = [[startRow,startCol].join(delim)]
 
     while (potentialSquares.length > 0) {
         const indices = potentialSquares.shift().split(delim);
