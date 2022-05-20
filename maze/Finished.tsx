@@ -12,12 +12,14 @@ import animista from '../assets/animista.css';
 
 interface Props {
     level: number;
+    maxLevel: number;
     goHome: () => void;
-    restart: () => void;
+    nextLevel: () => void;
+    selectLevel: () => void;
 }
 
 export const Finished: FC<Props> = memo(props => {
-    const { goHome, restart, level } = props;
+    const { goHome, nextLevel, selectLevel, level, maxLevel } = props;
     const hatEl = useRef<HTMLDivElement>(null);
     const hatAction = 'shake-vertical';
     const leftThumbEl = useRef<HTMLDivElement>(null);
@@ -71,11 +73,20 @@ export const Finished: FC<Props> = memo(props => {
                         Home
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[STYLES.button, STYLES.buttonBlue]} onPress={restart}>
-                    <Text style={[STYLES.buttonText, STYLES.buttonTextBlue]}>
-                        {level < LEVELS.length - 1 ? 'Next Level' : 'Start Over'}
-                    </Text>
-                </TouchableOpacity>
+                {maxLevel < LEVELS.length - 1 && (
+                    <TouchableOpacity style={[STYLES.button, STYLES.buttonBlue]} onPress={nextLevel}>
+                        <Text style={[STYLES.buttonText, STYLES.buttonTextBlue]}>
+                            Next Level
+                        </Text>
+                    </TouchableOpacity>
+                )}
+                {maxLevel === LEVELS.length - 1 && (
+                    <TouchableOpacity style={[STYLES.button, STYLES.buttonBlue]} onPress={selectLevel}>
+                        <Text style={[STYLES.buttonText, STYLES.buttonTextBlue]}>
+                            Select Level
+                        </Text>
+                    </TouchableOpacity>
+                )}
                 <TouchableOpacity style={STYLES.button} onPress={doActions}>
                     <Text style={STYLES.buttonText}>
                         Dance

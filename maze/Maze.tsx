@@ -9,6 +9,7 @@ import { LEVELS, ROWS, COLS, COLORS } from './constants';
 import { Page } from '../components/Page';
 import { GetStarted } from '../components/GetStarted';
 import { Finished } from './Finished';
+import { Levels } from './Levels';
 import overall from '../assets/images/overall.png';
 import hat from '../assets/images/hat.png';
 
@@ -17,6 +18,8 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     const [getStarted, setGetStarted] = useState<boolean>(true);
     const [finished, setFinished] = useState<boolean>(false);
     const [level, setLevel] = useState<number>(0);
+    const [showSelectLevel, setShowSelectLevel] = useState<boolean>();
+    const [maxLevel, setMaxLevel] = useState<number>(0);
     const [userMoves, setUserMoves] = useState<number>(0);
     const [squares, setSquares] = useState();
     const [overallRow, setOverallRow] = useState<number>(0);
@@ -38,8 +41,20 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     }, []);
 
     const nextLevel = useCallback(() => {
-        setLevel((level + 1) % LEVELS.length);
-    }, [level]);
+        const _level = (level + 1) % LEVELS.length;
+        setLevel(_level);
+        if (_level > maxLevel) setMaxLevel(_level);
+    }, [level, maxLevel]);
+
+    const selectLevel = useCallback(() => {
+        setShowSelectLevel(true);
+    }, []);
+
+    const onSelectLevel = useCallback((selected: number) => {
+        setLevel(selected);
+        setShowSelectLevel(false);
+        restart(true, false);
+    }, []);
 
     const restart = useCallback((shouldGenerate = true, levelUp = true) => {
         setFinished(false);
@@ -83,6 +98,10 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
             navigation.navigate('Home');
         }, 500);
     }, []);
+
+    const resetMaze = useCallback(() => {
+        restart(true, false);
+    }, [restart]);
 
     const onMove = useCallback((rowChange, colChange, auto = false) => {
         if (rowChange !== 0) setOverallRow(overallRow + rowChange);
@@ -140,14 +159,18 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                 next={startMaze}
                 icon={overall}
                 title={'Cletus\' House of Mirrors'}
-                description={'Oh Cletus, not again! Can you help him find his hat?'}
+                description={'He\'s not Cletus without his hat! Help him find it.'}
                 buttonText={'Get Started'}
             />
         )
     }
 
+    if (showSelectLevel) {
+        return <Levels maxLevel={maxLevel} onSelectLevel={onSelectLevel} />;
+    }
+
     if (finished) {
-        return <Finished level={level} goHome={goHome} restart={restart} />;
+        return <Finished level={level} maxLevel={maxLevel} goHome={goHome} nextLevel={restart} selectLevel={selectLevel} />;
     }
 
     return (
@@ -252,7 +275,12 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                         Home
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={STYLES.button} onPress={() => restart(true, false)}>
+                <TouchableOpacity style={[STYLES.button, STYLES.buttonBlue]} onPress={selectLevel}>
+                    <Text style={[STYLES.buttonText, STYLES.buttonTextBlue]}>
+                        Select Level
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={STYLES.button} onPress={resetMaze}>
                     <Text style={STYLES.buttonText}>
                         Reset
                     </Text>
