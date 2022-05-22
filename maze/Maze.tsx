@@ -216,9 +216,15 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                                         if (userMoves > 0 && (Math.abs(overallRow - r) > 1 || Math.abs(overallCol - c) > 1)) {
                                             styles.push({ borderColor: THEME1.orange + '00' });
                                         }
-                                    } else if (level === LEVEL_MAP.ALL && userMoves > 0) {
-                                        if (styles.indexOf(STYLES.squareRight) === -1) styles.push(STYLES.squareRight);
-                                        if (styles.indexOf(STYLES.squareBottom) === -1) styles.push(STYLES.squareBottom);
+                                    } else if (level === LEVEL_MAP.ALL) {
+                                        if (userMoves > 0) {
+                                            if (styles.indexOf(STYLES.squareRight) === -1) styles.push(STYLES.squareRight);
+                                            if (styles.indexOf(STYLES.squareBottom) === -1) styles.push(STYLES.squareBottom);
+                                        }
+                                    } else if (level === LEVEL_MAP.ONOFF) {
+                                        if (userMoves % 2 === 1) {
+                                            styles.push({ borderColor: THEME1.orange + '00' });
+                                        }
                                     }
 
                                     return (

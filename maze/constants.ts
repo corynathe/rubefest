@@ -20,8 +20,9 @@ export const LEVEL_MAP = {
     COLOR: 1,
     FADE: 2,
     FOCUS: 3,
-    ALL: 4,
-    CHANGE: 5,
+    ONOFF: 4,
+    ALL: 5,
+    CHANGE: 6,
 }
 
 export const LEVELS = [
@@ -29,6 +30,7 @@ export const LEVELS = [
     'Level 2: Color Wonder',
     'Level 3: Fading Away',
     'Level 4: Losing Focus',
-    'Level 5: See Thru Walls',
-    'Level 6: Change Places',
+    'Level 5: On/Off Switch',
+    'Level 6: See Thru Walls',
+    'Level 7: Change Places',
 ];
