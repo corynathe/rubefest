@@ -184,19 +184,19 @@ export const FINAL_PERF_SIZE = 200;
 
 export const PERFORMERS = [{
     name: 'Clown',
-    points: 15,
+    points: 17,
     image: clown,
 },{
     name: 'Juggler',
-    points: 18,
+    points: 20,
     image: juggling,
 },{
     name: 'Magician',
-    points: 21,
+    points: 23,
     image: magic,
 },{
     name: 'Unicyclist',
-    points: 24,
+    points: 25,
     image: unicycle,
 },{
     name: 'Ringmaster',
@@ -208,14 +208,14 @@ export const PERFORMERS = [{
     image: trapeze,
 },{
     name: 'Tightrope Walker',
-    points: 32,
+    points: 31,
     image: tightrope,
 },{
     name: 'Lion Tamer',
-    points: 35,
+    points: 34,
     image: lion,
 },{
     name: 'Snake Charmer',
-    points: 39,
+    points: 37,
     image: snake,
 }];
