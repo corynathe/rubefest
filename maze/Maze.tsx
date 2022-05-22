@@ -5,7 +5,7 @@ import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Gesture, GestureDetector, Directions } from 'react-native-gesture-handler';
 
 import { STYLES, THEME1 } from "../styles";
-import { LEVELS, ROWS, COLS, COLORS } from './constants';
+import { LEVELS, LEVEL_MAP, ROWS, COLS, COLORS } from './constants';
 import { Page } from '../components/Page';
 import { GetStarted } from '../components/GetStarted';
 import { Finished } from './Finished';
@@ -86,8 +86,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     }, []);
 
     useEffect(() => {
-        // time for a change
-        if (level === 4 && userMoves > 0 && userMoves % 4 === 0) {
+        if (level === LEVEL_MAP.CHANGE && userMoves > 0 && userMoves % 4 === 0) {
             generateMaze(overallRow, overallCol);
         }
     }, [level, userMoves]);
@@ -112,7 +111,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     useEffect(() => {
         if (overallRow === hatRow && overallCol == hatCol) {
             setFinished(true);
-        } else if (level === 4) {
+        } else if (level === LEVEL_MAP.CHANGE) {
             // no free moves in level (time for a change)
         } else if (!atStart && (_canGoUp + _canGoRight + _canGoDown + _canGoLeft) === 2) {
             // only one move to make so take it
@@ -181,9 +180,9 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                 </Text>
             </View>
             <View style={[STYLES.row, { paddingBottom: 10 }]}>
-                <Text style={STYLES.infoText}>Use</Text>
+                <Text style={STYLES.infoText}>Swipe</Text>
                 <MaterialCommunityIcons name="gesture-swipe" size={25} color={THEME1.green} />
-                <Text style={STYLES.infoText}>or click the </Text>
+                <Text style={STYLES.infoText}>or click </Text>
                 <FontAwesome5 name='arrow-left' size={20} color={THEME1.green} />
                 <FontAwesome5 name='arrow-right' size={20} color={THEME1.green} />
                 <Text style={STYLES.infoText}>to move Cletus.</Text>
@@ -203,12 +202,9 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                                     const isBelowOverall = r === (overallRow + 1) && c === overallCol;
                                     const isAboveOverall = r === (overallRow - 1) && c === overallCol;
 
-                                    // color wonder
-                                    if (level === 1) {
+                                    if (level === LEVEL_MAP.COLOR) {
                                         styles.push({ borderColor: COLORS[randomInt(COLORS.length - 1)] });
-                                    }
-                                    // fading away
-                                    else if (level === 2) {
+                                    } else if (level === LEVEL_MAP.FADE) {
                                         if (userMoves === 0) {
                                             // no-op
                                         } else if (userMoves < 10 ) {
@@ -216,12 +212,13 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
                                         } else {
                                             styles.push({ borderColor: THEME1.orange + '00' });
                                         }
-                                    }
-                                    // losing focus
-                                    else if (level === 3) {
+                                    } else if (level === LEVEL_MAP.FOCUS) {
                                         if (userMoves > 0 && (Math.abs(overallRow - r) > 1 || Math.abs(overallCol - c) > 1)) {
                                             styles.push({ borderColor: THEME1.orange + '00' });
                                         }
+                                    } else if (level === LEVEL_MAP.ALL && userMoves > 0) {
+                                        if (styles.indexOf(STYLES.squareRight) === -1) styles.push(STYLES.squareRight);
+                                        if (styles.indexOf(STYLES.squareBottom) === -1) styles.push(STYLES.squareBottom);
                                     }
 
                                     return (

@@ -170,6 +170,7 @@ export const STYLES = StyleSheet.create({
         fontFamily: 'Rye_400Regular',
         color: THEME1.light,
         paddingLeft: 20,
+        paddingTop: 5,
     },
 
     maze: {

@@ -22,7 +22,7 @@ export const Levels: FC<Props> = memo(props => {
         <Page icon={overall} status={'House of Mirrors'}>
             <View>
                 {LEVELS.map((title, index) => {
-                    const styles = [STYLES.button];
+                    const styles = [STYLES.button, { marginTop: 10 }];
                     if (index > maxLevel) {
                         styles.push(STYLES.buttonDisabled);
                     }
