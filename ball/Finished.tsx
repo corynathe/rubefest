@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback, useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, Share } from 'react-native'
-import { STYLES, HOME_URL } from "../styles";
+import { STYLES, THEME1, HOME_URL } from "../styles";
 import { Page } from "../components/Page";
 import { Anchor } from "../components/Anchor";
 import { ANSWERS, INFO } from "./constants";
@@ -65,7 +65,7 @@ export const Finished: FC<Props> = memo(props => {
         <Page icon={ball}>
             {showInfo ? (
                 <>
-                    <Text style={[STYLES.title, { fontSize: 30 }]}>Facts about Cletus:</Text>
+                    <Text style={[STYLES.title, { fontSize: 30, color: THEME1.orange }]}>Facts about Cletus:</Text>
                     {INFO.map((info, index) => {
                         return (
                             <View key={index} style={[STYLES.rowCenter, { paddingBottom: 15 }]}>

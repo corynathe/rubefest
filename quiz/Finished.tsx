@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, Share } from 'react-native'
-import { STYLES, HOME_URL } from "../styles";
+import { STYLES, THEME1, HOME_URL } from "../styles";
 import { PERFORMERS, FINAL_PERF_SIZE } from "./constants";
 import { Answer } from "./model";
 import { Page } from "../components/Page";
@@ -68,7 +68,7 @@ export const Finished: FC<Props> = memo(props => {
         <Page icon={circus}>
             {showQuizInfo ? (
                 <>
-                    <Text style={[STYLES.title, { fontSize: 30 }]}>Meet the performers!</Text>
+                    <Text style={[STYLES.title, { fontSize: 30, color: THEME1.orange }]}>Meet the performers!</Text>
                     <View style={[STYLES.rowCenter]}>
                         <ShowPerformer name={PERFORMERS[0].name} image={PERFORMERS[0].image} />
                         <ShowPerformer name={PERFORMERS[1].name} image={PERFORMERS[1].image} />

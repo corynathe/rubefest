@@ -78,7 +78,7 @@ export const CrystalBall: FC<NativeStackScreenProps> = memo(props => {
         <Page status={'Cletus\' Crystal Ball'} icon={ball} goHome={goHome} navigation={navigation}>
             <View>
                 <Text style={[STYLES.question]}>
-                    Think of a question. Say it out loud for all to hear and then click on a button below to
+                    Think of a question. Say it out loud. Then click on a button below to
                     reveal Cletus' answer.
                 </Text>
             </View>
