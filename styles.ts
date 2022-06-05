@@ -4,8 +4,8 @@ export const HOME_URL = 'https://corynathe.github.io/rubefest';
 
 export const THEME1 = {
     yellow: '#f2bd4d',
-    orange: '#ec5d37',
-    blue: '#0da9b1',
+    orange: '#b82428',
+    blue: '#1d7678',
     light: '#ffedd4',
     green: '#004649',
 }
@@ -174,6 +174,7 @@ export const STYLES = StyleSheet.create({
     },
 
     maze: {
+        overflow: 'auto',
     },
     rowMaze: {
         flexDirection: 'row',
