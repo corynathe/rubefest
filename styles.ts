@@ -134,7 +134,7 @@ export const STYLES = StyleSheet.create({
     infoText2: {
         fontSize: 20,
         fontFamily: 'Rye_400Regular',
-        color: THEME1.green,
+        color: THEME1.orange,
         textAlign: 'left',
     },
     infoText3: {
