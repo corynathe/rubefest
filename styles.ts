@@ -6,7 +6,7 @@ export const THEME1 = {
     yellow: '#f2bd4d',
     orange: '#b82428',
     blue: '#1d7678',
-    light: '#ffedd4',
+    light: '#ffffff',
     green: '#004649',
 }
 export const THEME2 = {
@@ -44,6 +44,11 @@ export const STYLES = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: WIDTH,
     },
+    rowLeft: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: WIDTH,
+    },
     footerTitle: {
         paddingTop: 10,
         fontSize: 20,
@@ -51,8 +56,8 @@ export const STYLES = StyleSheet.create({
         color: THEME1.blue,
     },
     headerTitle: {
-        paddingTop: 10,
-        fontSize: 25,
+        paddingTop: 8,
+        fontSize: 28,
         fontFamily: 'Rye_400Regular',
         textTransform: 'uppercase',
         color: THEME1.blue,
@@ -76,12 +81,12 @@ export const STYLES = StyleSheet.create({
     question: {
         textAlign: 'left',
         fontSize: 23,
-        fontFamily: 'Rye_400Regular',
+        fontFamily: 'Livvic_400Regular',
         textTransform: 'uppercase',
         color: THEME1.orange,
         paddingBottom: 20,
-        paddingLeft: 5,
-        paddingRight: 5,
+        paddingLeft: 15,
+        paddingRight: 15,
         width: WIDTH,
     },
     answerBox: {
@@ -96,7 +101,7 @@ export const STYLES = StyleSheet.create({
     },
     answerText: {
         fontSize: 18,
-        fontFamily: 'Livvic_400Regular',
+        fontFamily: 'Rye_400Regular',
         color: THEME1.green,
     },
     answerSelectedText: {
