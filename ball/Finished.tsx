@@ -65,7 +65,7 @@ export const Finished: FC<Props> = memo(props => {
         <Page status={'Cletus\' Crystal Ball'} icon={ball}>
             {showInfo ? (
                 <>
-                    <Text style={[STYLES.title, { fontSize: 30, color: THEME1.orange, paddingBottom: 20 }]}>
+                    <Text style={[STYLES.title, { fontSize: 30, fontFamily: 'Livvic_400Regular', color: THEME1.orange, paddingBottom: 20 }]}>
                         Facts about Cletus:
                     </Text>
                     {INFO.map((info, index) => {

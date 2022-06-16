@@ -68,7 +68,7 @@ export const Finished: FC<Props> = memo(props => {
         <Page status={'RubeFest Circus'} icon={circus}>
             {showQuizInfo ? (
                 <>
-                    <Text style={[STYLES.title, { fontSize: 30, color: THEME1.orange, paddingBottom: 20 }]}>
+                    <Text style={[STYLES.title, { fontSize: 30, fontFamily: 'Livvic_400Regular', color: THEME1.orange, paddingBottom: 20 }]}>
                         Meet the performers!
                     </Text>
                     <View style={[STYLES.rowCenter]}>
