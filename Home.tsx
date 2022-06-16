@@ -7,6 +7,7 @@ import { Page } from './components/Page';
 import ball from './assets/images/crystal-ball.png';
 import circus from './assets/images/circus.png';
 import overall from './assets/images/overall.png';
+import icon from './assets/icon.png';
 
 export const Home: FC<NativeStackScreenProps> = memo(props => {
     const { navigation } = props;
@@ -14,6 +15,9 @@ export const Home: FC<NativeStackScreenProps> = memo(props => {
 
     return (
         <Page hideHeaderFooter>
+            <View style={[STYLES.row]}>
+                <Image source={icon} style={{ width: 200, height: 200 }} />
+            </View>
             <View>
                 <TouchableOpacity style={[STYLES.row, STYLES.card, STYLES.card_orange]} onPress={() => navigation.navigate('Quiz')}>
                     <Image source={circus} style={{ width: size, height: size }} />
