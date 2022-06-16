@@ -9,23 +9,21 @@ import overall from '../assets/images/overall.png';
 
 interface Props {
     maxLevel: number;
-    onSelectLevel: (selected: number) => void;
+    onSelectLevel: (selected: number, difficult: boolean) => void;
     colNums: number[];
-    onChangeDiff: (difficult: boolean) => void;
 }
 
 export const Levels: FC<Props> = memo(props => {
-    const { maxLevel, onSelectLevel, colNums, onChangeDiff } = props;
+    const { maxLevel, onSelectLevel, colNums } = props;
     const [isDiffChecked, setDiffChecked] = useState(colNums.length === COLS_MEDI.length);
 
     const onLevelClick = useCallback((selected: number) => {
-        if (selected <= maxLevel) onSelectLevel(selected);
-    }, [maxLevel, onSelectLevel]);
+        if (selected <= maxLevel) onSelectLevel(selected, isDiffChecked);
+    }, [maxLevel, onSelectLevel, isDiffChecked]);
 
     const onDiffClick = useCallback((checked: boolean) => {
         setDiffChecked(checked);
-        onChangeDiff(checked);
-    }, [onChangeDiff]);
+    }, []);
 
     return (
         <Page icon={overall} status={'House of Mirrors'}>
@@ -45,16 +43,16 @@ export const Levels: FC<Props> = memo(props => {
                     )
                 })}
             </View>
-            {/*<View style={[STYLES.rowLeft, { marginTop: 20 }]}>*/}
-            {/*    <Text style={[STYLES.buttonText, { paddingRight: 10 }]}>*/}
-            {/*        Double time:*/}
-            {/*    </Text>*/}
-            {/*    <Checkbox*/}
-            {/*        value={isDiffChecked}*/}
-            {/*        onValueChange={onDiffClick}*/}
-            {/*        color={isDiffChecked ? THEME1.green : undefined}*/}
-            {/*    />*/}
-            {/*</View>*/}
+            <View style={[STYLES.rowLeft, { marginTop: 20 }]}>
+                <Text style={[STYLES.buttonText, { paddingRight: 10 }]}>
+                    Double time:
+                </Text>
+                <Checkbox
+                    value={isDiffChecked}
+                    onValueChange={onDiffClick}
+                    color={isDiffChecked ? THEME1.green : undefined}
+                />
+            </View>
         </Page>
     )
 });

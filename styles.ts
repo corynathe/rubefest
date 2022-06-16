@@ -137,8 +137,8 @@ export const STYLES = StyleSheet.create({
         textAlign: 'center',
     },
     infoText2: {
-        fontSize: 20,
-        fontFamily: 'Rye_400Regular',
+        fontSize: 25,
+        fontFamily: 'Livvic_400Regular',
         color: THEME1.orange,
         textAlign: 'left',
     },

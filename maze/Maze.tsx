@@ -51,17 +51,17 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         setShowSelectLevel(true);
     }, []);
 
-    const onSelectLevel = useCallback((selected: number) => {
-        setLevel(selected);
-        setShowSelectLevel(false);
-        restart(true, false);
-    }, []);
-
-    const onChangeDiff = useCallback((difficult: boolean) => {
+    const onSelectLevel = useCallback((selected: number, difficult: boolean) => {
         const newColNums = difficult ? COLS_MEDI : COLS_EASY;
         setHatCol(newColNums.length - 1);
         setColNums(newColNums);
+        setLevel(selected);
+        setShowSelectLevel(false);
     }, []);
+
+    useEffect(() => {
+        if (!showSelectLevel) restart(true, false);
+    }, [showSelectLevel]);
 
     const _generateMaze = useCallback((startRow: number, startCol: number) => {
         setSquares(generateMaze(startRow, startCol, colNums));
@@ -161,7 +161,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     }
 
     if (showSelectLevel) {
-        return <Levels maxLevel={maxLevel} onSelectLevel={onSelectLevel} colNums={colNums} onChangeDiff={onChangeDiff} />;
+        return <Levels maxLevel={maxLevel} onSelectLevel={onSelectLevel} colNums={colNums} />;
     }
 
     if (finished) {
