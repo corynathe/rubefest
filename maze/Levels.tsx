@@ -43,16 +43,16 @@ export const Levels: FC<Props> = memo(props => {
                     )
                 })}
             </View>
-            <View style={[STYLES.rowLeft, { marginTop: 20 }]}>
-                <Text style={[STYLES.buttonText, { paddingRight: 10 }]}>
-                    Double time:
-                </Text>
-                <Checkbox
-                    value={isDiffChecked}
-                    onValueChange={onDiffClick}
-                    color={isDiffChecked ? THEME1.green : undefined}
-                />
-            </View>
+            {/*<View style={[STYLES.rowLeft, { marginTop: 20 }]}>*/}
+            {/*    <Text style={[STYLES.buttonText, { paddingRight: 10 }]}>*/}
+            {/*        Double time:*/}
+            {/*    </Text>*/}
+            {/*    <Checkbox*/}
+            {/*        value={isDiffChecked}*/}
+            {/*        onValueChange={onDiffClick}*/}
+            {/*        color={isDiffChecked ? THEME1.green : undefined}*/}
+            {/*    />*/}
+            {/*</View>*/}
         </Page>
     )
 });
