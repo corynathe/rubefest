@@ -1,11 +1,11 @@
 import React, { useState, useMemo, useCallback, FC, memo, useEffect, useRef } from 'react';
-import { Text, TouchableOpacity, View, Image } from 'react-native';
+import { Text, TouchableOpacity, View, ScrollView, Image } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Gesture, GestureDetector, Directions } from 'react-native-gesture-handler';
 
 import { STYLES, THEME1 } from "../styles";
-import { LEVELS, LEVEL_MAP, ROWS, COLS, COLORS } from './constants';
+import { LEVELS, LEVEL_MAP, ROWS, COLS_EASY, COLS_MEDI, COLORS } from './constants';
 import { Page } from '../components/Page';
 import { GetStarted } from '../components/GetStarted';
 import { Finished } from './Finished';
@@ -25,7 +25,8 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     const [overallRow, setOverallRow] = useState<number>(0);
     const [overallCol, setOverallCol] = useState<number>(0);
     const [hatRow, setHatRow] = useState<number>(ROWS.length - 1);
-    const [hatCol, setHatCol] = useState<number>(COLS.length - 1);
+    const [hatCol, setHatCol] = useState<number>(COLS_EASY.length - 1);
+    const [colNums, setColNums] = useState<number[]>(COLS_EASY);
     const prevOverallRow = usePrevious(overallRow)
     const prevOverallCol = usePrevious(overallCol)
 
@@ -56,6 +57,16 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         restart(true, false);
     }, []);
 
+    const onChangeDiff = useCallback((difficult: boolean) => {
+        const newColNums = difficult ? COLS_MEDI : COLS_EASY;
+        setHatCol(newColNums.length - 1);
+        setColNums(newColNums);
+    }, []);
+
+    const _generateMaze = useCallback((startRow: number, startCol: number) => {
+        setSquares(generateMaze(startRow, startCol, colNums));
+    }, [colNums]);
+
     const restart = useCallback((shouldGenerate = true, levelUp = true) => {
         setFinished(false);
         setUserMoves(0);
@@ -63,33 +74,18 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
         setOverallRow(0);
         setOverallCol(0);
         if (levelUp) nextLevel();
-        if (shouldGenerate) generateMaze(0, 0);
-    }, [nextLevel]);
-
-    const generateMaze = (startRow: number, startCol: number) => {
-        let count = 1;
-        let generatedSquares = getMazeSquares();
-        while (!validMazeSquares(generatedSquares, startRow, startCol)) {
-            generatedSquares = getMazeSquares();
-            count++;
-
-            // give up after attempting for awhile
-            if (count > 1000) break;
-        }
-
-        console.log('Generate attempts: ' + count);
-        setSquares(generatedSquares);
-    }
+        if (shouldGenerate) _generateMaze(0, 0);
+    }, [nextLevel, colNums, _generateMaze]);
 
     useEffect(() => {
-        generateMaze(0, 0);
+        _generateMaze(0, 0);
     }, []);
 
     useEffect(() => {
         if (level === LEVEL_MAP.CHANGE && userMoves > 0 && userMoves % 4 === 0) {
-            generateMaze(overallRow, overallCol);
+            _generateMaze(overallRow, overallCol);
         }
-    }, [level, userMoves]);
+    }, [level, userMoves, _generateMaze]);
 
     const goHome = useCallback(() => {
         setTimeout(() => {
@@ -165,7 +161,7 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     }
 
     if (showSelectLevel) {
-        return <Levels maxLevel={maxLevel} onSelectLevel={onSelectLevel} />;
+        return <Levels maxLevel={maxLevel} onSelectLevel={onSelectLevel} colNums={colNums} onChangeDiff={onChangeDiff} />;
     }
 
     if (finished) {
@@ -293,7 +289,22 @@ export const Maze: FC<NativeStackScreenProps> = memo(props => {
     )
 });
 
-const getMazeSquares = () => {
+const generateMaze = (startRow: number, startCol: number, colNums: number[]) => {
+    let count = 1;
+    let generatedSquares = getMazeSquares(colNums);
+    while (!validMazeSquares(generatedSquares, startRow, startCol, colNums)) {
+        generatedSquares = getMazeSquares(colNums);
+        count++;
+
+        // give up after attempting for awhile
+        if (count > 1000) break;
+    }
+
+    console.log('Generate attempts: ' + count);
+    return generatedSquares;
+}
+
+const getMazeSquares = (COLS: number[]) => {
     const rowSquares = [];
 
     ROWS.forEach(r => {
@@ -335,7 +346,7 @@ const getMazeSquares = () => {
     return rowSquares;
 }
 
-const validMazeSquares = (squares: [], startRow: number, startCol: number): boolean => {
+const validMazeSquares = (squares: [], startRow: number, startCol: number, COLS: number[]): boolean => {
     const delim = '|';
     const accessedSquares = [];
     const potentialSquares = [[startRow,startCol].join(delim)]

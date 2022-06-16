@@ -1,9 +1,8 @@
 import { THEME1 } from '../styles';
 
 export const ROWS = [0,1,2,3,4,5,6,7,8,9,10,11];
-export const COLS = [0,1,2,3,4,5,6,7,8];
-// export const ROWS = [0,1,2];
-// export const COLS = [0,1,2];
+export const COLS_EASY = [0,1,2,3,4,5,6,7,8];
+export const COLS_MEDI = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
 
 export const COLORS = [
     'red',
