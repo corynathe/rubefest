@@ -62,10 +62,12 @@ export const Finished: FC<Props> = memo(props => {
     }, []);
 
     return (
-        <Page icon={ball}>
+        <Page status={'Cletus\' Crystal Ball'} icon={ball}>
             {showInfo ? (
                 <>
-                    <Text style={[STYLES.title, { fontSize: 30, color: THEME1.orange }]}>Facts about Cletus:</Text>
+                    <Text style={[STYLES.title, { fontSize: 30, color: THEME1.orange, paddingBottom: 20 }]}>
+                        Facts about Cletus:
+                    </Text>
                     {INFO.map((info, index) => {
                         return (
                             <View key={index} style={[STYLES.rowCenter, { paddingBottom: 15 }]}>

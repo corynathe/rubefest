@@ -33,7 +33,7 @@ export const Page: FC<Props> = memo(props => {
     return (
         <View style={[STYLES.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
             {!_hideHeaderFooter && (
-                <View style={[STYLES.row]}>
+                <View style={[STYLES.row, { padding: 10 }]}>
                     <Image source={_icon} style={{ width: 50, height: 50 }} />
                     {status !== undefined && navigation && (
                         <TouchableOpacity onPress={navigate}>
@@ -41,7 +41,9 @@ export const Page: FC<Props> = memo(props => {
                         </TouchableOpacity>
                     )}
                     {status !== undefined && !navigation && (
-                        <Text style={STYLES.headerTitle}>RubeFest</Text>
+                        <Text style={[STYLES.headerTitle]}>
+                            RubeFest
+                        </Text>
                     )}
                     {status === undefined && <Image source={_icon} style={{ width: 50, height: 50 }} />}
                     <Image source={_icon} style={{ width: 50, height: 50 }} />
@@ -51,7 +53,7 @@ export const Page: FC<Props> = memo(props => {
                 {children}
             </View>
             {!_hideHeaderFooter && !hideFooter && (
-                <View style={[STYLES.row]}>
+                <View style={[STYLES.row, { padding: 10 }]}>
                     <Image source={_icon} style={{ width: 50, height: 50 }} />
                     {status !== undefined && <Text style={STYLES.footerTitle}>{status}</Text>}
                     {status === undefined && <Image source={_icon} style={{ width: 50, height: 50 }} />}

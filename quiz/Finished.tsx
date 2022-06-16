@@ -65,10 +65,12 @@ export const Finished: FC<Props> = memo(props => {
     }, []);
 
     return (
-        <Page icon={circus}>
+        <Page status={'RubeFest Circus'} icon={circus}>
             {showQuizInfo ? (
                 <>
-                    <Text style={[STYLES.title, { fontSize: 30, color: THEME1.orange }]}>Meet the performers!</Text>
+                    <Text style={[STYLES.title, { fontSize: 30, color: THEME1.orange, paddingBottom: 20 }]}>
+                        Meet the performers!
+                    </Text>
                     <View style={[STYLES.rowCenter]}>
                         <ShowPerformer name={PERFORMERS[0].name} image={PERFORMERS[0].image} />
                         <ShowPerformer name={PERFORMERS[1].name} image={PERFORMERS[1].image} />
